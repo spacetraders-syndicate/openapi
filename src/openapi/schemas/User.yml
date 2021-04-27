@@ -1,0 +1,18 @@
+type: object
+required:
+  - username
+properties:
+  username:
+    type: string
+    example: MyUser
+  credits:
+    type: number
+    example: 421337
+  ships:
+    type: array
+    items:
+      $ref: ./Ship.yml
+  loans:
+    type: array
+    items: 
+      $ref: ./Loan.yml

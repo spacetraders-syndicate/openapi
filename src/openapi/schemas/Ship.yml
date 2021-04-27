@@ -1,0 +1,50 @@
+type: object
+required:
+  - id
+  - cargo
+  - class
+  - location
+  - manufacturer
+  - maxCargo
+  - plating
+  - spaceAvailable
+  - speed
+  - type
+  - weapons
+  - x
+  - "y"
+properties:
+  id:
+    type: string
+    example: ckno9324k0079iiop71j5nroa
+  # cargo:
+  #   type: array
+  class:
+    type: string
+  location:
+    type: string
+    example: OE-PM-TR
+  manufacturer:
+    type: string
+    example: Jackshaw
+  maxCargo:
+    type: number
+    example: 50
+  plating:
+    type: number
+    example: 5
+  spaceAvailable:
+    type: number
+    example: 50
+  type:
+    type: string
+    example: JW-MK-I
+  weapons:
+    type: number
+    example: 5
+  x:
+    type: number
+    example: 23
+  y:
+    type: number
+    example: -28

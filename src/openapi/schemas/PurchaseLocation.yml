@@ -1,0 +1,15 @@
+type: object
+required:
+  - system
+  - location
+  - price
+properties:
+  system:
+    type: string
+    example: OE
+  location:
+    type: string
+    example: OE-A1
+  price:
+    type: number
+    example: 16000

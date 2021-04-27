@@ -1,0 +1,7 @@
+name: username
+in: path
+example: MyUser
+required: true
+schema:
+  type: string
+style: simple

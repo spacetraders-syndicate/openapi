@@ -1,0 +1,239 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "SpaceTraders Syndicate API",
+    "description": "spacetraders.io OpenAPI Spec",
+    "version": "1.0.0",
+    "contact": {
+      "email": "jaredlshort@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.spacetraders.io",
+      "description": "Production"
+    }
+  ],
+  "paths": {
+    "/users/{username}/token": {
+      "post": {
+        "operationId": "createUserToken",
+        "summary": "Claim Username and Get Token",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserTokenResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/UsernameParameter"
+        }
+      ]
+    },
+    "/game/status": {
+      "get": {
+        "operationId": "getGameStatus",
+        "summary": "Get Game Status",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "parameters": {
+      "UsernameParameter": {
+        "name": "username",
+        "in": "path",
+        "example": "MyUser",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "style": "simple"
+      }
+    },
+    "schemas": {
+      "Ship": {
+        "type": "object",
+        "required": [
+          "id",
+          "cargo",
+          "class",
+          "location",
+          "manufacturer",
+          "maxCargo",
+          "plating",
+          "spaceAvailable",
+          "speed",
+          "type",
+          "weapons",
+          "x",
+          "y"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "ckno9324k0079iiop71j5nroa"
+          },
+          "class": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string",
+            "example": "OE-PM-TR"
+          },
+          "manufacturer": {
+            "type": "string",
+            "example": "Jackshaw"
+          },
+          "maxCargo": {
+            "type": "number",
+            "example": 50
+          },
+          "plating": {
+            "type": "number",
+            "example": 5
+          },
+          "spaceAvailable": {
+            "type": "number",
+            "example": 50
+          },
+          "type": {
+            "type": "string",
+            "example": "JW-MK-I"
+          },
+          "weapons": {
+            "type": "number",
+            "example": 5
+          },
+          "x": {
+            "type": "number",
+            "example": 23
+          },
+          "y": {
+            "type": "number",
+            "example": -28
+          }
+        }
+      },
+      "Loan": {
+        "type": "object",
+        "required": [
+          "id",
+          "due",
+          "repaymentAmount",
+          "status",
+          "type"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "cko0ejf4o103666215s6u4pxjvdd"
+          },
+          "due": {
+            "type": "string",
+            "format": "datetime",
+            "example": "2021-04-29T19:07:58.679Z"
+          },
+          "repaymentAmount": {
+            "type": "number",
+            "example": 280000
+          },
+          "status": {
+            "type": "string",
+            "example": "CURRENT"
+          },
+          "type": {
+            "type": "string",
+            "example": "STARTUP"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "required": [
+          "username"
+        ],
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "MyUser"
+          },
+          "credits": {
+            "type": "number",
+            "example": 421337
+          },
+          "ships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Ship"
+            }
+          },
+          "loans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Loan"
+            }
+          }
+        }
+      },
+      "CreateUserTokenResponse": {
+        "type": "object",
+        "required": [
+          "token",
+          "user"
+        ],
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "096643df-72cc-40b5-95d3-514f47d3f9d9"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "GameStatus": {
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "spacetraders is currently online and available to play"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

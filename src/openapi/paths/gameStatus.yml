@@ -1,0 +1,11 @@
+
+get:
+  operationId: getGameStatus
+  summary: Get Game Status
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/GameStatus.yml

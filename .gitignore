@@ -1,0 +1,9 @@
+**/.DS_Store
+*.tgz
+.env
+.log
+.vscode
+dist/
+node_modules
+node_modules/
+src/sdk

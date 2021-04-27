@@ -1,0 +1,24 @@
+type: object
+required:
+  - id
+  - due
+  - repaymentAmount
+  - status
+  - type
+properties:
+  id:
+    type: string
+    example: cko0ejf4o103666215s6u4pxjvdd
+  due:
+    type: string
+    format: datetime
+    example: "2021-04-29T19:07:58.679Z"
+  repaymentAmount:
+    type: number
+    example: 280000
+  status:
+    type: string
+    example: CURRENT
+  type:
+    type: string
+    example: STARTUP

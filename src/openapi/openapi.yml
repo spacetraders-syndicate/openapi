@@ -1,0 +1,25 @@
+openapi: 3.0.1
+info:
+  title: SpaceTraders Syndicate API
+  description: spacetraders.io OpenAPI Spec
+  version: 1.0.0
+  contact:
+    email: jaredlshort@gmail.com
+servers:
+  - url: https://api.spacetraders.io
+    description: Production
+paths:
+  /users/{username}/token:
+    $ref: ./paths/usersToken.yml
+  # /game/systems/{symbol}/flight-plans:
+  #   $ref: ./paths/flightPlans.yml
+  /game/status:
+    $ref: ./paths/gameStatus.yml
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []

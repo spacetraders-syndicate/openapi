@@ -1,0 +1,13 @@
+post:
+  operationId: createUserToken
+  summary: Claim Username and Get Token
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/CreateUserTokenResponse.yml
+
+parameters:
+  - $ref: ../schemas/UsernameParameter.yml
