@@ -14,7 +14,7 @@ jobs:
       - name: Install
         run: npm ci
       - name: generate docs
-        run: npm run generate:docs && mkdir public && cp redic-static.html public/index.html
+        run: npm run generate:docs && mkdir public && cp redoc-static.html public/index.html
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
