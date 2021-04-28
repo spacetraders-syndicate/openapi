@@ -23,6 +23,10 @@ paths:
     $ref: ./paths/usersLoans.yml
   /users/{username}/loans/{loanId}:
     $ref: ./paths/usersLoansById.yml
+  /game/locations/{symbol}:
+    $ref: ./paths/gameLocations.yml
+  /game/locations/{symbol}/ships:
+    $ref: ./paths/gameLocationsShips.yml
   /game/systems/{symbol}/flight-plans:
     $ref: ./paths/gameSystemsFlightPlans.yml
   /game/loans:

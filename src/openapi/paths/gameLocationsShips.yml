@@ -1,0 +1,14 @@
+
+get:
+  operationId: listGameLocationsShips
+  summary: List Game Locations Ships
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/ListGameLocationsShipsResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterSymbol.yml

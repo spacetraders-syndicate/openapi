@@ -1,0 +1,15 @@
+type: object
+required:
+  - shipId
+  - username
+  - shipType
+properties:
+  shipId:
+    type: string
+    example: ckno9324k0079iiop71j5nrob
+  username:
+    type: string
+    example: SomeUser
+  shipType:
+    type: string
+    example: JW-MK-I

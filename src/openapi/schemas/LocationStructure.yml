@@ -1,0 +1,57 @@
+type: object
+required:
+  - id
+  - type
+  - location
+  - status
+  - active
+  - ownedBy
+  - inventory
+  - consumes
+  - produces
+properties:
+  id:
+    type: string
+    example: ckno69qb105191ds69utcsztz
+  type:
+    type: string
+    example: MINE
+  location:
+    type: string
+    example: OE-UC-AD
+  status:
+    type: string
+    example: "Production running. Required inventory is in stock."
+  active:
+    type: boolean
+    example: true
+  ownedBy:
+    type: object
+    required:
+      - username
+    properties:
+      username:
+        type: string
+        example: SomeUser
+  inventory:
+    type: array
+    items:
+      type: object
+      required:
+        - good
+        - quantity
+      properties:
+        good:
+          type: string
+          example: METALS
+        quantity:
+          type: number
+          example: 10
+  consumes:
+    type: array
+    items:
+      type: string
+  produces:
+    type: array
+    items:
+      type: string

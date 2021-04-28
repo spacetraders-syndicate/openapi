@@ -1,0 +1,6 @@
+type: object
+required:
+  - location
+properties:
+  location:
+    $ref: ./Location.yml

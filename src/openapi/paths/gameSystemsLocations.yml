@@ -7,7 +7,13 @@ get:
       name: type
       schema:
         type: string
+      example: MOON
       description: Filter locations fetched on location type
+    - in: query
+      name: allowsConstruction
+      schema:
+        type: boolean
+      example: true
 
   responses:
     200:

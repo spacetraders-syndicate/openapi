@@ -229,6 +229,52 @@
         }
       ]
     },
+    "/game/locations/{symbol}": {
+      "get": {
+        "operationId": "getGameLocation",
+        "summary": "Get Game Location",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGameLocationResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ParameterSymbol"
+        }
+      ]
+    },
+    "/game/locations/{symbol}/ships": {
+      "get": {
+        "operationId": "listGameLocationsShips",
+        "summary": "List Game Locations Ships",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListGameLocationsShipsResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ParameterSymbol"
+        }
+      ]
+    },
     "/game/systems/{symbol}/flight-plans": {
       "get": {
         "operationId": "listFlightPlans",
@@ -280,7 +326,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ListGamePurchasableShips"
+                  "$ref": "#/components/schemas/ListGamePurchasableShipsResponse"
                 }
               }
             }
@@ -335,7 +381,16 @@
             "schema": {
               "type": "string"
             },
+            "example": "MOON",
             "description": "Filter locations fetched on location type"
+          },
+          {
+            "in": "query",
+            "name": "allowsConstruction",
+            "schema": {
+              "type": "boolean"
+            },
+            "example": true
           }
         ],
         "responses": {
@@ -677,6 +732,179 @@
           }
         }
       },
+      "LocationShip": {
+        "type": "object",
+        "required": [
+          "shipId",
+          "username",
+          "shipType"
+        ],
+        "properties": {
+          "shipId": {
+            "type": "string",
+            "example": "ckno9324k0079iiop71j5nrob"
+          },
+          "username": {
+            "type": "string",
+            "example": "SomeUser"
+          },
+          "shipType": {
+            "type": "string",
+            "example": "JW-MK-I"
+          }
+        }
+      },
+      "LocationStructure": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "location",
+          "status",
+          "active",
+          "ownedBy",
+          "inventory",
+          "consumes",
+          "produces"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "ckno69qb105191ds69utcsztz"
+          },
+          "type": {
+            "type": "string",
+            "example": "MINE"
+          },
+          "location": {
+            "type": "string",
+            "example": "OE-UC-AD"
+          },
+          "status": {
+            "type": "string",
+            "example": "Production running. Required inventory is in stock."
+          },
+          "active": {
+            "type": "boolean",
+            "example": true
+          },
+          "ownedBy": {
+            "type": "object",
+            "required": [
+              "username"
+            ],
+            "properties": {
+              "username": {
+                "type": "string",
+                "example": "SomeUser"
+              }
+            }
+          },
+          "inventory": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "good",
+                "quantity"
+              ],
+              "properties": {
+                "good": {
+                  "type": "string",
+                  "example": "METALS"
+                },
+                "quantity": {
+                  "type": "number",
+                  "example": 10
+                }
+              }
+            }
+          },
+          "consumes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "produces": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Location": {
+        "type": "object",
+        "required": [
+          "symbol",
+          "type",
+          "name",
+          "x",
+          "y",
+          "allowsConstruction"
+        ],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "example": "OE-A1"
+          },
+          "type": {
+            "type": "string",
+            "example": "PLANET"
+          },
+          "name": {
+            "type": "string",
+            "example": "Alpha"
+          },
+          "x": {
+            "type": "number",
+            "example": 3
+          },
+          "y": {
+            "type": "number",
+            "example": 7
+          },
+          "allowsConstruction": {
+            "type": "boolean",
+            "example": true
+          },
+          "ships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationShip"
+            }
+          },
+          "structures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationStructure"
+            }
+          }
+        }
+      },
+      "GetGameLocationResponse": {
+        "type": "object",
+        "required": [
+          "location"
+        ],
+        "properties": {
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          }
+        }
+      },
+      "ListGameLocationsShipsResponse": {
+        "type": "object",
+        "required": [
+          "location"
+        ],
+        "properties": {
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          }
+        }
+      },
       "FlightPlan": {
         "type": "object",
         "required": [
@@ -848,7 +1076,7 @@
           }
         }
       },
-      "ListGamePurchasableShips": {
+      "ListGamePurchasableShipsResponse": {
         "type": "object",
         "required": [
           "ships"
@@ -859,38 +1087,6 @@
             "items": {
               "$ref": "#/components/schemas/PurchaseableShip"
             }
-          }
-        }
-      },
-      "Location": {
-        "type": "object",
-        "required": [
-          "symbol",
-          "type",
-          "name",
-          "x",
-          "y"
-        ],
-        "properties": {
-          "symbol": {
-            "type": "string",
-            "example": "OE-A1"
-          },
-          "type": {
-            "type": "string",
-            "example": "PLANET"
-          },
-          "name": {
-            "type": "string",
-            "example": "Alpha"
-          },
-          "x": {
-            "type": "number",
-            "example": 3
-          },
-          "y": {
-            "type": "number",
-            "example": 7
           }
         }
       },

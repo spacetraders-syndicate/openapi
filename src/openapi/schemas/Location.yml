@@ -5,6 +5,7 @@ required:
   - name
   - x
   - "y"
+  - allowsConstruction
 properties:
   symbol:
     type: string
@@ -21,3 +22,14 @@ properties:
   y:
     type: number
     example: 7
+  allowsConstruction:
+    type: boolean
+    example: true
+  ships:
+    type: array
+    items:
+      $ref: ./LocationShip.yml
+  structures:
+    type: array
+    items:
+      $ref: ./LocationStructure.yml
