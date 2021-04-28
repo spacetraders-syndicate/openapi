@@ -1,0 +1,11 @@
+
+get:
+  operationId: listGameSystems
+  summary: List Game Systems
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/ListGameSystemsResponse.yml

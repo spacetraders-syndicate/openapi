@@ -1,0 +1,16 @@
+type: object
+required:
+  - symbol
+  - name
+  - locations
+properties:
+  symbol:
+    type: string
+    example: OE
+  name:
+    type: string
+    example: Omicron Eridani
+  locations:
+    type: array
+    items:
+      $ref: ./Location.yml

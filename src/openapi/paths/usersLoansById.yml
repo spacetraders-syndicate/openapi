@@ -1,0 +1,15 @@
+put:
+  operationId: payoffUserLoan
+  summary: Payoff a Loan
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/PayoffUserLoanResponse.yml
+
+
+parameters:
+  - $ref: ../schemas/ParameterUsername.yml
+  - $ref: ../schemas/ParameterLoanId.yml

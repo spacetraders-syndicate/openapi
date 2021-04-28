@@ -1,0 +1,23 @@
+type: object
+required:
+  - amount
+  - collateralRequired
+  - rate
+  - termInDays
+  - type
+properties:
+  amount:
+    type: number
+    example: 200000
+  collateralRequired:
+    type: boolean
+    example: false
+  rate:
+    type: number
+    example: 40
+  termInDays:
+    type: number
+    example: 2
+  type:
+    type: string
+    example: STARTUP

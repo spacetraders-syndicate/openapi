@@ -1,0 +1,29 @@
+post:
+  operationId: createUserLoan
+  summary: Create a New Loan
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../schemas/CreateUserLoanPayload.yml
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/CreateUserLoanResponse.yml
+
+get:
+  operationId: listUserLoans
+  summary: List User's Loans
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/ListUserLoansResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterUsername.yml

@@ -1,0 +1,23 @@
+type: object
+required:
+  - symbol
+  - type
+  - name
+  - x
+  - "y"
+properties:
+  symbol:
+    type: string
+    example: OE-A1
+  type:
+    type: string
+    example: PLANET
+  name:
+    type: string
+    example: Alpha
+  x:
+    type: number
+    example: 3
+  y:
+    type: number
+    example: 7

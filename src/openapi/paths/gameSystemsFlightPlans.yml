@@ -1,0 +1,14 @@
+
+get:
+  operationId: listFlightPlans
+  summary: List Flight Plans
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/ListGameSystemsFlightPlans.yml
+
+parameters:
+  - $ref: ../schemas/ParameterSymbol.yml

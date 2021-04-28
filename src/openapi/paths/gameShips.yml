@@ -1,0 +1,11 @@
+
+get:
+  operationId: listGamePurchasableShips
+  summary: List Game Purchasable Ships
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/ListGamePurchasableShips.yml

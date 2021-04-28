@@ -1,0 +1,8 @@
+type: object
+required:
+  - flightPlans
+properties:
+  flightPlans:
+    type: array
+    items:
+      $ref: ./FlightPlan.yml

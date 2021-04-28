@@ -1,0 +1,8 @@
+type: object
+required:
+  - loans
+properties:
+  loans:
+    type: array
+    items:
+      $ref: ./Loan.yml

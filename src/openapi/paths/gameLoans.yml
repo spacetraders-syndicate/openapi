@@ -1,11 +1,10 @@
-
 get:
-  operationId: getGameStatus
-  summary: Get Game Status
+  operationId: listGameLoans
+  summary: List Game Loans
   responses:
     200:
       description: Success
       content:
         application/json:
           schema:
-            $ref: ../schemas/GetGameStatusResponse.yml
+            $ref: ../schemas/ListGameLoansResponse.yml

@@ -10,4 +10,4 @@ post:
             $ref: ../schemas/CreateUserTokenResponse.yml
 
 parameters:
-  - $ref: ../schemas/UsernameParameter.yml
+  - $ref: ../schemas/ParameterUsername.yml

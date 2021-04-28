@@ -12,6 +12,10 @@
     {
       "url": "https://api.spacetraders.io",
       "description": "Production"
+    },
+    {
+      "url": "https://staging.api.spacetraders.io",
+      "description": "Staging"
     }
   ],
   "paths": {
@@ -34,9 +38,183 @@
       },
       "parameters": [
         {
-          "$ref": "#/components/parameters/UsernameParameter"
+          "$ref": "#/components/parameters/ParameterUsername"
         }
       ]
+    },
+    "/users/{username}": {
+      "get": {
+        "operationId": "getUser",
+        "summary": "Get User",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ParameterUsername"
+        }
+      ]
+    },
+    "/users/{username}/loans": {
+      "post": {
+        "operationId": "createUserLoan",
+        "summary": "Create a New Loan",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserLoanPayload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserLoanResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "listUserLoans",
+        "summary": "List User's Loans",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListUserLoansResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ParameterUsername"
+        }
+      ]
+    },
+    "/users/{username}/loans/{loanId}": {
+      "put": {
+        "operationId": "payoffUserLoan",
+        "summary": "Payoff a Loan",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PayoffUserLoanResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ParameterUsername"
+        },
+        {
+          "$ref": "#/components/parameters/ParameterLoanId"
+        }
+      ]
+    },
+    "/game/systems/{symbol}/flight-plans": {
+      "get": {
+        "operationId": "listFlightPlans",
+        "summary": "List Flight Plans",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListGameSystemsFlightPlans"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ParameterSymbol"
+        }
+      ]
+    },
+    "/game/loans": {
+      "get": {
+        "operationId": "listGameLoans",
+        "summary": "List Game Loans",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListGameLoansResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/ships": {
+      "get": {
+        "operationId": "listGamePurchasableShips",
+        "summary": "List Game Purchasable Ships",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListGamePurchasableShips"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/systems": {
+      "get": {
+        "operationId": "listGameSystems",
+        "summary": "List Game Systems",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListGameSystemsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     },
     "/game/status": {
       "get": {
@@ -48,7 +226,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GameStatus"
+                  "$ref": "#/components/schemas/GetGameStatusResponse"
                 }
               }
             }
@@ -61,14 +239,35 @@
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
+        "bearerFormat": "JWT",
         "scheme": "bearer"
       }
     },
     "parameters": {
-      "UsernameParameter": {
+      "ParameterUsername": {
         "name": "username",
         "in": "path",
         "example": "MyUser",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "style": "simple"
+      },
+      "ParameterLoanId": {
+        "name": "loanId",
+        "in": "path",
+        "example": "cko0ejf4o103666215s6u4pxjvwg",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "style": "simple"
+      },
+      "ParameterSymbol": {
+        "name": "symbol",
+        "in": "path",
+        "example": "OE",
         "required": true,
         "schema": {
           "type": "string"
@@ -217,7 +416,326 @@
           }
         }
       },
-      "GameStatus": {
+      "GetUserResponse": {
+        "type": "object",
+        "required": [
+          "user"
+        ],
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "ListUserLoansResponse": {
+        "type": "object",
+        "required": [
+          "loans"
+        ],
+        "properties": {
+          "loans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Loan"
+            }
+          }
+        }
+      },
+      "CreateUserLoanPayload": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "STARTUP"
+          }
+        }
+      },
+      "CreateUserLoanResponse": {
+        "type": "object",
+        "required": [
+          "credits",
+          "loan"
+        ],
+        "properties": {
+          "credits": {
+            "type": "number",
+            "example": 200000
+          },
+          "loan": {
+            "$ref": "#/components/schemas/Loan"
+          }
+        }
+      },
+      "PayoffUserLoanResponse": {
+        "type": "object",
+        "required": [
+          "user"
+        ],
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "FlightPlan": {
+        "type": "object",
+        "required": [
+          "arrivesAt",
+          "createdAt",
+          "departure",
+          "destination",
+          "id",
+          "shipId",
+          "shipType",
+          "username"
+        ],
+        "properties": {
+          "arrivesAt": {
+            "type": "string",
+            "format": "datetime",
+            "example": "2021-03-28T23:11:50.068Z"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "example": "2021-03-28T23:05:50.068Z"
+          },
+          "departure": {
+            "type": "string",
+            "example": "OE-PM-TR"
+          },
+          "destination": {
+            "type": "string",
+            "example": "OE-CR"
+          },
+          "id": {
+            "type": "string",
+            "example": "ckmtrssae0402zgopsy39y9z7"
+          },
+          "shipId": {
+            "type": "string",
+            "example": "ckmtrlqpz0109zgopkeqs4m5s"
+          },
+          "username": {
+            "type": "string",
+            "example": "SomeUser"
+          }
+        }
+      },
+      "ListGameSystemsFlightPlans": {
+        "type": "object",
+        "required": [
+          "flightPlans"
+        ],
+        "properties": {
+          "flightPlans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FlightPlan"
+            }
+          }
+        }
+      },
+      "AvailableLoan": {
+        "type": "object",
+        "required": [
+          "amount",
+          "collateralRequired",
+          "rate",
+          "termInDays",
+          "type"
+        ],
+        "properties": {
+          "amount": {
+            "type": "number",
+            "example": 200000
+          },
+          "collateralRequired": {
+            "type": "boolean",
+            "example": false
+          },
+          "rate": {
+            "type": "number",
+            "example": 40
+          },
+          "termInDays": {
+            "type": "number",
+            "example": 2
+          },
+          "type": {
+            "type": "string",
+            "example": "STARTUP"
+          }
+        }
+      },
+      "ListGameLoansResponse": {
+        "type": "object",
+        "required": [
+          "loans"
+        ],
+        "properties": {
+          "loans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AvailableLoan"
+            }
+          }
+        }
+      },
+      "PurchaseLocation": {
+        "type": "object",
+        "required": [
+          "system",
+          "location",
+          "price"
+        ],
+        "properties": {
+          "system": {
+            "type": "string",
+            "example": "OE"
+          },
+          "location": {
+            "type": "string",
+            "example": "OE-A1"
+          },
+          "price": {
+            "type": "number",
+            "example": 16000
+          }
+        }
+      },
+      "PurchaseableShip": {
+        "type": "object",
+        "required": [
+          "class",
+          "purchaseLocations",
+          "manufacturer",
+          "maxCargo",
+          "plating",
+          "speed",
+          "type",
+          "weapons"
+        ],
+        "properties": {
+          "class": {
+            "type": "string"
+          },
+          "manufacturer": {
+            "type": "string",
+            "example": "Jackshaw"
+          },
+          "maxCargo": {
+            "type": "number",
+            "example": 50
+          },
+          "plating": {
+            "type": "number",
+            "example": 5
+          },
+          "type": {
+            "type": "string",
+            "example": "JW-MK-I"
+          },
+          "weapons": {
+            "type": "number",
+            "example": 5
+          },
+          "purchaseLocations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PurchaseLocation"
+            }
+          }
+        }
+      },
+      "ListGamePurchasableShips": {
+        "type": "object",
+        "required": [
+          "ships"
+        ],
+        "properties": {
+          "ships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PurchaseableShip"
+            }
+          }
+        }
+      },
+      "Location": {
+        "type": "object",
+        "required": [
+          "symbol",
+          "type",
+          "name",
+          "x",
+          "y"
+        ],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "example": "OE-A1"
+          },
+          "type": {
+            "type": "string",
+            "example": "PLANET"
+          },
+          "name": {
+            "type": "string",
+            "example": "Alpha"
+          },
+          "x": {
+            "type": "number",
+            "example": 3
+          },
+          "y": {
+            "type": "number",
+            "example": 7
+          }
+        }
+      },
+      "System": {
+        "type": "object",
+        "required": [
+          "symbol",
+          "name",
+          "locations"
+        ],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "example": "OE"
+          },
+          "name": {
+            "type": "string",
+            "example": "Omicron Eridani"
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Location"
+            }
+          }
+        }
+      },
+      "ListGameSystemsResponse": {
+        "type": "object",
+        "required": [
+          "systems"
+        ],
+        "properties": {
+          "systems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/System"
+            }
+          }
+        }
+      },
+      "GetGameStatusResponse": {
         "type": "object",
         "required": [
           "status"

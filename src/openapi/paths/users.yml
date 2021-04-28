@@ -1,0 +1,14 @@
+
+get:
+  operationId: getUser
+  summary: Get User
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/GetUserResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterUsername.yml

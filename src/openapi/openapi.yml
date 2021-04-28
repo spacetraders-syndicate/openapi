@@ -8,11 +8,25 @@ info:
 servers:
   - url: https://api.spacetraders.io
     description: Production
+  - url: https://staging.api.spacetraders.io
+    description: Staging
 paths:
   /users/{username}/token:
     $ref: ./paths/usersToken.yml
-  # /game/systems/{symbol}/flight-plans:
-  #   $ref: ./paths/flightPlans.yml
+  /users/{username}:
+    $ref: ./paths/users.yml
+  /users/{username}/loans:
+    $ref: ./paths/usersLoans.yml
+  /users/{username}/loans/{loanId}:
+    $ref: ./paths/usersLoansById.yml
+  /game/systems/{symbol}/flight-plans:
+    $ref: ./paths/gameSystemsFlightPlans.yml
+  /game/loans:
+    $ref: ./paths/gameLoans.yml
+  /game/ships:
+    $ref: ./paths/gameShips.yml
+  /game/systems:
+    $ref: ./paths/gameSystems.yml
   /game/status:
     $ref: ./paths/gameStatus.yml
 
@@ -20,6 +34,7 @@ components:
   securitySchemes:
     bearerAuth:
       type: http
+      bearerFormat: JWT
       scheme: bearer
 security:
-  - bearerAuth: []
+- bearerAuth: []

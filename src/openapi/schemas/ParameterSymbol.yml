@@ -1,0 +1,7 @@
+name: symbol
+in: path
+example: OE
+required: true
+schema:
+  type: string
+style: simple

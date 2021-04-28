@@ -1,0 +1,7 @@
+name: loanId
+in: path
+example: cko0ejf4o103666215s6u4pxjvwg
+required: true
+schema:
+  type: string
+style: simple

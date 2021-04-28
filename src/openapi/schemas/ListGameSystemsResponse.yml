@@ -1,0 +1,8 @@
+type: object
+required:
+  - systems
+properties:
+  systems:
+    type: array
+    items:
+      $ref: ./System.yml
