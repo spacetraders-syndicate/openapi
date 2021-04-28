@@ -1,7 +1,20 @@
-import { DefaultApi as API, Ship, User } from '../../src/sdk';
+import { DefaultApi as API, Ship, User, System } from '../../src/sdk';
 
-export async function buyCheapestShip(user: User, api: API): Promise<Ship> {
-    const { data: { ships }} = await api.listGamePurchasableShips();
+export async function buyCheapestShip(user: User, api: API, systemSymbol?: System["symbol"]): Promise<Ship> {
+    let { data: { ships }} = await api.listGamePurchasableShips();
+
+    // filter to only ship purchase options from a particular system
+    if(systemSymbol){
+        ships = ships.map((ship) => {
+            ship.purchaseLocations = ship.purchaseLocations.filter((location) => {
+                return location.system == systemSymbol
+            })
+            return ship
+        }).filter((ship) => {
+            return ship.purchaseLocations.length > 0
+        })
+    }
+    
     const cheapestShip = ships.reduce((prev, curr) => {
         return prev.purchaseLocations.reduce((prev, curr) => {
             return prev.price < curr.price ? prev : curr

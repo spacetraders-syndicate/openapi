@@ -5,4 +5,4 @@ properties:
   flightPlans:
     type: array
     items:
-      $ref: ./FlightPlan.yml
+      $ref: ./GameFlightPlan.yml

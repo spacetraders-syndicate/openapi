@@ -1,0 +1,15 @@
+
+get:
+  operationId: getUserFlightPlan
+  summary: Get a User Flight Plan
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/GetUserFlightPlanResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterUsername.yml
+  - $ref: ../schemas/ParameterFlightPlanId.yml

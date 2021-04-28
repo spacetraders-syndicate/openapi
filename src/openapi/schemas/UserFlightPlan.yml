@@ -1,0 +1,51 @@
+type: object
+required:
+  - arrivesAt
+  - createdAt
+  - departure
+  - destination
+  - distance
+  - fuelConsumed
+  - fuelRemaining
+  - id
+  - shipId
+  - terminatedAt
+  - timeRemainingInSeconds
+properties:
+  arrivesAt:
+    type: string
+    format: datetime
+    example: "2021-03-28T23:11:50.068Z"
+  createdAt:
+    type: string
+    format: datetime
+    example: "2021-03-28T23:05:50.068Z"
+  departure:
+    type: string
+    example: OE-PM-TR
+  destination:
+    type: string
+    example: OE-CR
+  distance:
+    type: number
+    example: 46
+  fuelConsumed:
+    type: number
+    example: 13,
+  fuelRemaining:
+    type: number
+    example: 67
+  id:
+    type: string
+    example: ckmtrssae0402zgopsy39y9z7
+  shipId:
+    type: string
+    example: ckmtrlqpz0109zgopkeqs4m5s
+  terminatedAt:
+    type: string
+    format: datetime
+    nullable: true
+    example: null
+  timeRemainingInSeconds:
+    type: number
+    example: 365

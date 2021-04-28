@@ -229,6 +229,32 @@
         }
       ]
     },
+    "/users/{username}/flight-plans/{flightPlanId}": {
+      "get": {
+        "operationId": "getUserFlightPlan",
+        "summary": "Get a User Flight Plan",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserFlightPlanResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ParameterUsername"
+        },
+        {
+          "$ref": "#/components/parameters/ParameterFlightPlanId"
+        }
+      ]
+    },
     "/game/locations/{symbol}": {
       "get": {
         "operationId": "getGameLocation",
@@ -277,7 +303,7 @@
     },
     "/game/systems/{symbol}/flight-plans": {
       "get": {
-        "operationId": "listFlightPlans",
+        "operationId": "listGameSystemFlightPlans",
         "summary": "List Flight Plans",
         "responses": {
           "200": {
@@ -285,7 +311,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ListGameSystemsFlightPlans"
+                  "$ref": "#/components/schemas/ListGameSystemFlightPlansResponse"
                 }
               }
             }
@@ -446,6 +472,16 @@
         "name": "loanId",
         "in": "path",
         "example": "cko0ejf4o103666215s6u4pxjvwg",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "style": "simple"
+      },
+      "ParameterFlightPlanId": {
+        "name": "flightPlanId",
+        "in": "path",
+        "example": "ckmtrssae0402zgopsy39y9z7",
         "required": true,
         "schema": {
           "type": "string"
@@ -732,6 +768,83 @@
           }
         }
       },
+      "UserFlightPlan": {
+        "type": "object",
+        "required": [
+          "arrivesAt",
+          "createdAt",
+          "departure",
+          "destination",
+          "distance",
+          "fuelConsumed",
+          "fuelRemaining",
+          "id",
+          "shipId",
+          "terminatedAt",
+          "timeRemainingInSeconds"
+        ],
+        "properties": {
+          "arrivesAt": {
+            "type": "string",
+            "format": "datetime",
+            "example": "2021-03-28T23:11:50.068Z"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "datetime",
+            "example": "2021-03-28T23:05:50.068Z"
+          },
+          "departure": {
+            "type": "string",
+            "example": "OE-PM-TR"
+          },
+          "destination": {
+            "type": "string",
+            "example": "OE-CR"
+          },
+          "distance": {
+            "type": "number",
+            "example": 46
+          },
+          "fuelConsumed": {
+            "type": "number",
+            "example": "13,"
+          },
+          "fuelRemaining": {
+            "type": "number",
+            "example": 67
+          },
+          "id": {
+            "type": "string",
+            "example": "ckmtrssae0402zgopsy39y9z7"
+          },
+          "shipId": {
+            "type": "string",
+            "example": "ckmtrlqpz0109zgopkeqs4m5s"
+          },
+          "terminatedAt": {
+            "type": "string",
+            "format": "datetime",
+            "nullable": true,
+            "example": null
+          },
+          "timeRemainingInSeconds": {
+            "type": "number",
+            "example": 365
+          }
+        }
+      },
+      "GetUserFlightPlanResponse": {
+        "type": "object",
+        "required": [
+          "flightPlan"
+        ],
+        "properties": {
+          "flightPlan": {
+            "$ref": "#/components/schemas/UserFlightPlan"
+          }
+        }
+      },
       "LocationShip": {
         "type": "object",
         "required": [
@@ -905,7 +1018,7 @@
           }
         }
       },
-      "FlightPlan": {
+      "GameFlightPlan": {
         "type": "object",
         "required": [
           "arrivesAt",
@@ -950,7 +1063,7 @@
           }
         }
       },
-      "ListGameSystemsFlightPlans": {
+      "ListGameSystemFlightPlansResponse": {
         "type": "object",
         "required": [
           "flightPlans"
@@ -959,7 +1072,7 @@
           "flightPlans": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/FlightPlan"
+              "$ref": "#/components/schemas/GameFlightPlan"
             }
           }
         }

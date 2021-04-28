@@ -1,0 +1,7 @@
+name: flightPlanId
+in: path
+example: ckmtrssae0402zgopsy39y9z7
+required: true
+schema:
+  type: string
+style: simple
