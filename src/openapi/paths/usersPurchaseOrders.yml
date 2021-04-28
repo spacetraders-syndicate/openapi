@@ -1,0 +1,18 @@
+post:
+  operationId: createUserPurchaseOrder
+  summary: Create a New Purchase Order
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../schemas/CreateUserPurchaseOrderPayload.yml
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/CreateUserPurchaseOrderResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterUsername.yml

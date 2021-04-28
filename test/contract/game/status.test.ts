@@ -1,4 +1,5 @@
 import { DefaultApi as API } from '../../../src/sdk';
+import { sleep } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
@@ -7,6 +8,10 @@ describe('fetch game status', () => {
 
     beforeAll(async () => {
         api = new API();
+    });
+
+    beforeEach(async () => {
+        await sleep();
     });
 
     it(

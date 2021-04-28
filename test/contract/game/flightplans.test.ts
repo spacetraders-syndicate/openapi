@@ -1,5 +1,5 @@
 import { DefaultApi as API, Ship, System } from '../../../src/sdk';
-import { buyCheapestShip, newUserAndApiClientAcceptedLoan, User } from '../../utils';
+import { buyCheapestShip, newUserAndApiClientAcceptedLoan, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
@@ -18,6 +18,10 @@ describe('flight plans', () => {
         } = await api.listGameSystems();
         systems = systemsResponse;
         ship = await buyCheapestShip(user.user, api, systems[0].symbol);
+    });
+
+    beforeEach(async () => {
+        await sleep();
     });
 
     it(

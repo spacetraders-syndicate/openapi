@@ -229,6 +229,70 @@
         }
       ]
     },
+    "/users/{username}/purchase-orders": {
+      "post": {
+        "operationId": "createUserPurchaseOrder",
+        "summary": "Create a New Purchase Order",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserPurchaseOrderPayload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserPurchaseOrderResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ParameterUsername"
+        }
+      ]
+    },
+    "/users/{username}/flight-plans": {
+      "post": {
+        "operationId": "createUserFlightPlan",
+        "summary": "Create User Flight Plan",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserFlightPlanPayload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserFlightPlanResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ParameterUsername"
+        }
+      ]
+    },
     "/users/{username}/flight-plans/{flightPlanId}": {
       "get": {
         "operationId": "getUserFlightPlan",
@@ -768,6 +832,92 @@
           }
         }
       },
+      "CreateUserPurchaseOrderPayload": {
+        "type": "object",
+        "required": [
+          "shipId",
+          "good",
+          "quantity"
+        ],
+        "properties": {
+          "shipId": {
+            "type": "string",
+            "example": "ckno92mhi0049iiopc2kmylkz"
+          },
+          "good": {
+            "type": "string",
+            "example": "FUEL"
+          },
+          "quantity": {
+            "type": "number",
+            "example": 50
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "required": [
+          "good",
+          "quantity",
+          "pricePerUnit",
+          "total"
+        ],
+        "properties": {
+          "good": {
+            "type": "string",
+            "example": "FUEL"
+          },
+          "quantity": {
+            "type": "number",
+            "example": 50
+          },
+          "pricePerUnit": {
+            "type": "number",
+            "example": 3
+          },
+          "total": {
+            "type": "number",
+            "example": 150
+          }
+        }
+      },
+      "CreateUserPurchaseOrderResponse": {
+        "type": "object",
+        "required": [
+          "credits",
+          "ship",
+          "order"
+        ],
+        "properties": {
+          "credits": {
+            "type": "number",
+            "example": 74300
+          },
+          "ship": {
+            "$ref": "#/components/schemas/Ship"
+          },
+          "order": {
+            "$ref": "#/components/schemas/Order"
+          }
+        }
+      },
+      "CreateUserFlightPlanPayload": {
+        "type": "object",
+        "required": [
+          "shipId",
+          "destination"
+        ],
+        "properties": {
+          "shipId": {
+            "type": "string",
+            "example": "ckmtrlqpz0109zgopkeqs4m5s"
+          },
+          "destination": {
+            "type": "string",
+            "example": "OE-CR"
+          }
+        }
+      },
       "UserFlightPlan": {
         "type": "object",
         "required": [
@@ -831,6 +981,17 @@
           "timeRemainingInSeconds": {
             "type": "number",
             "example": 365
+          }
+        }
+      },
+      "CreateUserFlightPlanResponse": {
+        "type": "object",
+        "required": [
+          "flightPlan"
+        ],
+        "properties": {
+          "flightPlan": {
+            "$ref": "#/components/schemas/UserFlightPlan"
           }
         }
       },

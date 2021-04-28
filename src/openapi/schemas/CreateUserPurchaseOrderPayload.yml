@@ -1,0 +1,15 @@
+type: object
+required:
+  - shipId
+  - good
+  - quantity
+properties:
+  shipId:
+    type: string
+    example: ckno92mhi0049iiopc2kmylkz
+  good:
+    type: string
+    example: FUEL
+  quantity:
+    type: number
+    example: 50

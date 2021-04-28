@@ -1,5 +1,5 @@
 import { DefaultApi as API } from '../../../src/sdk';
-import { newUserAndApiClient, newUserAndApiClientAcceptedLoan, User } from '../../utils';
+import { newUserAndApiClientAcceptedLoan, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
@@ -11,6 +11,10 @@ describe('user info', () => {
         const response = await newUserAndApiClientAcceptedLoan();
         api = response.api;
         user = response.user;
+    });
+
+    beforeEach(async () => {
+        await sleep();
     });
 
     it(

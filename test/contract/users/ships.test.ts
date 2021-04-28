@@ -1,5 +1,5 @@
 import { DefaultApi as API, PurchaseableShip, Ship } from '../../../src/sdk';
-import { newUserAndApiClientAcceptedLoan, User } from '../../utils';
+import { newUserAndApiClientAcceptedLoan, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
@@ -17,6 +17,10 @@ describe('user ships', () => {
             data: { ships },
         } = await api.listGamePurchasableShips();
         purchaseableShips = ships;
+    });
+
+    beforeEach(async () => {
+        await sleep();
     });
 
     it(

@@ -1,5 +1,5 @@
 import { DefaultApi as API, System } from '../../../src/sdk';
-import { buyCheapestShip, User, newUserAndApiClientAcceptedLoan } from '../../utils';
+import { buyCheapestShip, User, newUserAndApiClientAcceptedLoan, sleep } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
@@ -17,6 +17,10 @@ describe('system locations', () => {
             data: { systems: returnedSystems },
         } = await api.listGameSystems();
         systems = returnedSystems;
+    });
+
+    beforeEach(async () => {
+        await sleep();
     });
 
     it(
