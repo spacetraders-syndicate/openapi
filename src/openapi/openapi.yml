@@ -21,6 +21,10 @@ paths:
     $ref: ./paths/usersSellOrders.yml
   /users/{username}/ships/{shipId}:
     $ref: ./paths/usersShipsById.yml
+  /users/{username}/ships/{shipId}/jettison:
+    $ref: ./paths/usersShipsByIdJettison.yml
+  /users/{username}/ships/{fromShipId}/transfer:
+    $ref: ./paths/usersShipsByIdTransfer.yml
   /users/{username}/loans:
     $ref: ./paths/usersLoans.yml
   /users/{username}/loans/{loanId}:

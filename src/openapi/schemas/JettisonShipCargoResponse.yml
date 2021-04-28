@@ -1,0 +1,15 @@
+type: object
+required:
+  - good
+  - quantityRemaining
+  - shipId
+properties:
+  good:
+    type: string
+    example: FUEL
+  quantityRemaining:
+    type: number
+    example: 37
+  shipId:
+    type: string
+    example: cko1peqal178915s6t8rzdgki

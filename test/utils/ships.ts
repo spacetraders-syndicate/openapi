@@ -1,6 +1,8 @@
 import { DefaultApi as API, Ship, User, System } from '../../src/sdk';
+import { sleep } from './sleep';
 
 export async function buyCheapestShip(user: User, api: API, systemSymbol?: System['symbol']): Promise<Ship> {
+    await sleep(1);
     let {
         data: { ships },
     } = await api.listGamePurchasableShips();
@@ -20,14 +22,15 @@ export async function buyCheapestShip(user: User, api: API, systemSymbol?: Syste
     }
 
     const cheapestShip = ships.reduce((prev, curr) => {
-        return prev.purchaseLocations.reduce((prev, curr) => {
+        const previousShipLowestPriceLocation = prev.purchaseLocations.reduce((prev, curr) => {
             return prev.price < curr.price ? prev : curr;
-        }) <
-            curr.purchaseLocations.reduce((prev, curr) => {
-                return prev.price < curr.price ? prev : curr;
-            })
-            ? prev
-            : curr;
+        }).price;
+
+        const currentShipLowstPriceLocation = curr.purchaseLocations.reduce((prev, curr) => {
+            return prev.price < curr.price ? prev : curr;
+        }).price;
+
+        return previousShipLowestPriceLocation < currentShipLowstPriceLocation ? prev : curr;
     });
 
     const {

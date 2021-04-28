@@ -1,0 +1,15 @@
+type: object
+required:
+  - toShipId
+  - good
+  - quantity
+properties:
+  toShipId:
+    type: string
+    example: ckn85whu00091r5opkrb5qpzh
+  good:
+    type: string
+    example: FUEL
+  quantity:
+    type: number
+    example: 50

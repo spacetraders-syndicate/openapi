@@ -1,0 +1,9 @@
+type: object
+required:
+  - fromShip
+  - toShip
+properties:
+  fromShip:
+    $ref: ./Ship.yml
+  toShip:
+    $ref: ./Ship.yml

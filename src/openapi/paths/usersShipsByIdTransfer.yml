@@ -1,0 +1,19 @@
+put:
+  operationId: transferShipCargo
+  summary: Transfer Ship Cargo
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../schemas/TransferShipCargoPayload.yml
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/TransferShipCargoResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterUsername.yml
+  - $ref: ../schemas/ParameterFromShipId.yml

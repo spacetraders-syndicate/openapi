@@ -1,0 +1,19 @@
+put:
+  operationId: jettisonShipCargo
+  summary: Jettison Ship Cargo
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../schemas/JettisonShipCargoPayload.yml
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/JettisonShipCargoResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterUsername.yml
+  - $ref: ../schemas/ParameterShipId.yml
