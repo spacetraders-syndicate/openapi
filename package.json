@@ -5,7 +5,7 @@
         "start": "openapi preview-docs ./src/openapi/openapi.yml",
         "build": "npm run openapi && npm run codegen",
         "openapi": "openapi bundle ./src/openapi/openapi.yml -o ./openapi.json",
-        "codegen": "openapi-generator-cli generate -i ./openapi.json -o ./src/sdk -g typescript-axios -p typescriptFourPlus=true -p useSingleRequestParameter=true -p supportsES6=true && npx replace-in-file \"/* tslint:disable */\" \"/* tslint:disable */ // @ts-nocheck */\" src/sdk/*",
+        "codegen": "openapi-generator-cli generate -i ./openapi.json -o ./src/sdk -g typescript-axios -p typescriptFourPlus=true -p useSingleRequestParameter=true -p supportsES6=true -p npmName=@spacetraders-syndicate/openapi-sdk && npx replace-in-file \"/* tslint:disable */\" \"/* tslint:disable */ // @ts-nocheck */\" src/sdk/*",
         "test": "npm run build && jest --config jest.config.ts --runInBand",
         "generate:docs": "npm run build && npx redoc-cli bundle openapi.json --options.theme.colors.primary.main=orange"
     },
