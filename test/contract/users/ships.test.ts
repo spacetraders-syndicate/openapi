@@ -21,7 +21,7 @@ describe('user ships', () => {
 
     beforeEach(async () => {
         await sleep();
-    });
+    }, TEST_TIMEOUT);
 
     it(
         'buys ship',

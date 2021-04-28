@@ -17,6 +17,8 @@ paths:
     $ref: ./paths/users.yml
   /users/{username}/ships:
     $ref: ./paths/usersShips.yml
+  /users/{username}/sell-orders:
+    $ref: ./paths/usersSellOrders.yml
   /users/{username}/ships/{shipId}:
     $ref: ./paths/usersShipsById.yml
   /users/{username}/loans:

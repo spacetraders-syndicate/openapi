@@ -15,7 +15,7 @@ describe('ships', () => {
 
     beforeEach(async () => {
         await sleep();
-    });
+    }, TEST_TIMEOUT);
 
     it(
         'fetches purchaseable ships',

@@ -1,0 +1,13 @@
+type: object
+required:
+  - credits
+  - ship
+  - order
+properties:
+  credits:
+    type: number
+    example: 74300
+  ship:
+    $ref: ./Ship.yml
+  order:
+    $ref: ./Order.yml

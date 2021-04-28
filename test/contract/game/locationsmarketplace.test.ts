@@ -23,7 +23,7 @@ describe('system locations', () => {
 
     beforeEach(async () => {
         await sleep();
-    });
+    }, TEST_TIMEOUT);
 
     it(
         'gets marketplace',

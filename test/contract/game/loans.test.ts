@@ -15,7 +15,7 @@ describe('loans', () => {
 
     beforeEach(async () => {
         await sleep();
-    });
+    }, TEST_TIMEOUT);
 
     it(
         'fetches available loans',

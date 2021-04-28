@@ -12,7 +12,7 @@ describe('fetch game status', () => {
 
     beforeEach(async () => {
         await sleep();
-    });
+    }, TEST_TIMEOUT);
 
     it(
         'fetches status',

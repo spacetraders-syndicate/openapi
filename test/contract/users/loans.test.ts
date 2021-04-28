@@ -15,7 +15,7 @@ describe('user info', () => {
 
     beforeEach(async () => {
         await sleep();
-    });
+    }, TEST_TIMEOUT);
 
     it(
         'fetches loans',

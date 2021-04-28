@@ -1,0 +1,18 @@
+post:
+  operationId: createUserSellOrder
+  summary: Create a New Sell  Order
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../schemas/CreateUserSellOrderPayload.yml
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/CreateUserSellOrderResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterUsername.yml

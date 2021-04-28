@@ -1,22 +1,23 @@
-import { DefaultApi as API, Location, Ship, System } from '../../../src/sdk';
-import { buyCheapestShip, newUserAndApiClientAcceptedLoan, sleep, User } from '../../utils';
+import { DefaultApi as API, Ship, System } from '../../../src/sdk';
+import { buyCheapestShip, User, newUserAndApiClientAcceptedLoan, sleep } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
-describe('user flight plans', () => {
+describe('user marketplace', () => {
     let api: API;
     let user: User;
-    let ship: Ship;
     let systems: System[];
+    let ship: Ship;
 
     beforeAll(async () => {
         const response = await newUserAndApiClientAcceptedLoan();
         api = response.api;
         user = response.user;
+
         const {
-            data: { systems: systemsResponse },
+            data: { systems: returnedSystems },
         } = await api.listGameSystems();
-        systems = systemsResponse;
+        systems = returnedSystems;
         ship = await buyCheapestShip(user.user, api, systems[0].symbol);
     });
 
@@ -25,13 +26,8 @@ describe('user flight plans', () => {
     }, TEST_TIMEOUT);
 
     it(
-        'creates flight plan',
+        'sell at marketplace',
         async () => {
-            // first location that isn't where the ship is
-            const destination = systems[0].locations.find((location) => {
-                return location.symbol !== ship.location;
-            }) as Location;
-
             const purchasedFuel = await api.createUserPurchaseOrder({
                 username: user.user.username,
                 createUserPurchaseOrderPayload: {
@@ -41,15 +37,18 @@ describe('user flight plans', () => {
                 },
             });
 
-            const flightPlan = await api.createUserFlightPlan({
+            const sellFuelOrder = await api.createUserSellOrder({
                 username: user.user.username,
-                createUserFlightPlanPayload: {
+                createUserSellOrderPayload: {
                     shipId: ship.id,
-                    destination: destination.symbol,
+                    good: 'FUEL',
+                    quantity: 33,
                 },
             });
-            expect(flightPlan.data.flightPlan.departure).toBeDefined();
-            expect(flightPlan.data.flightPlan.fuelConsumed).toBeGreaterThan(0);
+
+            expect(sellFuelOrder.data.credits).toBeGreaterThan(0);
+            expect(sellFuelOrder.data.order.good).toBe('FUEL');
+            expect(sellFuelOrder.data.order.quantity).toBe(33);
         },
         TEST_TIMEOUT,
     );

@@ -15,8 +15,8 @@ describe('systems', () => {
 
     beforeEach(async () => {
         await sleep();
-    });
-    
+    }, TEST_TIMEOUT);
+
     it(
         'fetches systems',
         async () => {

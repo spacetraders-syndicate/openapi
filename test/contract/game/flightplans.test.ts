@@ -22,7 +22,7 @@ describe('flight plans', () => {
 
     beforeEach(async () => {
         await sleep();
-    });
+    }, TEST_TIMEOUT);
 
     it(
         'fetches flight plans',
