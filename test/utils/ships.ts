@@ -1,11 +1,11 @@
-import { Configuration, Ship, User, System, ShipsApi } from '../../src/sdk';
+import { Configuration, UserShip, User, System, ShipsApi } from '../../src/sdk';
 import { sleep } from './sleep';
 
 export async function buyCheapestShip(
     user: User,
     config: Configuration,
     systemSymbol?: System['symbol'],
-): Promise<Ship> {
+): Promise<UserShip> {
     await sleep(1);
     const shipsClient = await new ShipsApi(config);
     let {
