@@ -3,7 +3,7 @@ import { buyCheapestShip, newUserAndApiClientAcceptedLoan, User } from '../../ut
 
 const TEST_TIMEOUT = 10000;
 
-describe('flight plans', () => {
+describe('user flight plans', () => {
     let api: API;
     let user: User;
     let ship: Ship;
@@ -21,13 +21,8 @@ describe('flight plans', () => {
     });
 
     it(
-        'fetches flight plans',
+        'creates flight plan',
         async () => {
-            const {
-                data: { flightPlans },
-            } = await api.listGameSystemFlightPlans({
-                symbol: systems[0].symbol,
-            });
             expect(flightPlans.length).toBeGreaterThanOrEqual(0);
         },
         TEST_TIMEOUT,

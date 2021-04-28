@@ -12,7 +12,7 @@ properties:
   due:
     type: string
     format: datetime
-    example: "2021-04-29T19:07:58.679Z"
+    example: '2021-04-29T19:07:58.679Z'
   repaymentAmount:
     type: number
     example: 280000

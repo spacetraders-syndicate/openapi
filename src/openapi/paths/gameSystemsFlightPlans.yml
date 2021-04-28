@@ -1,4 +1,3 @@
-
 get:
   operationId: listGameSystemFlightPlans
   summary: List Flight Plans

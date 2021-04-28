@@ -9,7 +9,6 @@ put:
           schema:
             $ref: ../schemas/PayoffUserLoanResponse.yml
 
-
 parameters:
   - $ref: ../schemas/ParameterUsername.yml
   - $ref: ../schemas/ParameterLoanId.yml

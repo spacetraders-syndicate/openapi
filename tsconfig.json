@@ -1,34 +1,26 @@
 {
-  "compilerOptions": {
-    "alwaysStrict": true,
-    "declaration": true,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "lib": [
-      "es2018"
-    ],
-    "module": "commonjs",
-    "noFallthroughCasesInSwitch": false,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "outDir": "dist",
-    "strict": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": false,
-    "target": "es2018",
-    "resolveJsonModule": true
-  },
-  "exclude": [
-    "dist"
-  ],
-  "include": [
-    "openapi.json",
-    "src",
-    "test"
-  ]
+    "compilerOptions": {
+        "alwaysStrict": true,
+        "declaration": true,
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "inlineSourceMap": true,
+        "inlineSources": true,
+        "lib": ["es2018"],
+        "module": "commonjs",
+        "noFallthroughCasesInSwitch": false,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "outDir": "dist",
+        "strict": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": false,
+        "target": "es2018",
+        "resolveJsonModule": true
+    },
+    "exclude": ["dist"],
+    "include": ["openapi.json", "src", "test"]
 }

@@ -1,0 +1,11 @@
+type: object
+required:
+  - shipId
+  - destination
+properties:
+  shipId:
+    type: string
+    example: ckmtrlqpz0109zgopkeqs4m5s
+  destination:
+    type: string
+    example: OE-CR

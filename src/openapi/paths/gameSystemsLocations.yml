@@ -1,4 +1,3 @@
-
 get:
   operationId: listSystemLocations
   summary: List System Locations

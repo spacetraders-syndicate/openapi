@@ -1,4 +1,3 @@
-
 get:
   operationId: listGameLocationsShips
   summary: List Game Locations Ships

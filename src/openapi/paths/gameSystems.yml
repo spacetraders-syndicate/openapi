@@ -1,4 +1,3 @@
-
 get:
   operationId: listGameSystems
   summary: List Game Systems

@@ -12,7 +12,7 @@ required:
   - type
   - weapons
   - x
-  - "y"
+  - 'y'
 properties:
   id:
     type: string

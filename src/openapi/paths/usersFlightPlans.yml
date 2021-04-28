@@ -1,0 +1,18 @@
+post:
+  operationId: createUserFlightPlan
+  summary: Create User Flight Plan
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../schemas/CreateUserFlightPlanPayload.yml
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/CreateUserFlightPlanResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterUsername.yml

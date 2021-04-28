@@ -1,4 +1,3 @@
-
 get:
   operationId: getUserFlightPlan
   summary: Get a User Flight Plan

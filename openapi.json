@@ -443,7 +443,7 @@
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
-        "bearerFormat": "JWT",
+        "bearerFormat": "Bearer {token}",
         "scheme": "bearer"
       }
     },

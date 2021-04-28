@@ -1,7 +1,7 @@
 # Getting Started
 
 ```
-git clone 
+git clone
 npm i
 ```
 

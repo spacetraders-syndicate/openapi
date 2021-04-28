@@ -1,4 +1,3 @@
-
 get:
   operationId: listGamePurchasableShips
   summary: List Game Purchasable Ships

@@ -21,7 +21,7 @@ properties:
     example: OE-UC-AD
   status:
     type: string
-    example: "Production running. Required inventory is in stock."
+    example: 'Production running. Required inventory is in stock.'
   active:
     type: boolean
     example: true

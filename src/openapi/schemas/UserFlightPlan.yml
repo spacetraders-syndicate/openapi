@@ -15,11 +15,11 @@ properties:
   arrivesAt:
     type: string
     format: datetime
-    example: "2021-03-28T23:11:50.068Z"
+    example: '2021-03-28T23:11:50.068Z'
   createdAt:
     type: string
     format: datetime
-    example: "2021-03-28T23:05:50.068Z"
+    example: '2021-03-28T23:05:50.068Z'
   departure:
     type: string
     example: OE-PM-TR
