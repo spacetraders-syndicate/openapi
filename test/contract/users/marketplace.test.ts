@@ -1,4 +1,4 @@
-import { Configuration, PurchaseOrdersApi, SellOrdersApi, Ship, System, SystemsApi } from '../../../src/sdk';
+import { Configuration, PurchaseOrdersApi, SellOrdersApi, UserShip, System, SystemsApi } from '../../../src/sdk';
 import { buyCheapestShip, User, newUserAndConfigAcceptedLoan, sleep } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
@@ -7,7 +7,7 @@ describe('user marketplace', () => {
     let config: Configuration;
     let user: User;
     let systems: System[];
-    let ship: Ship;
+    let ship: UserShip;
 
     beforeAll(async () => {
         const response = await newUserAndConfigAcceptedLoan();

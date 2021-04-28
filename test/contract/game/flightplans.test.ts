@@ -1,11 +1,11 @@
-import { Configuration, FlightPlansApi, Ship, System, SystemsApi } from '../../../src/sdk';
+import { Configuration, FlightPlansApi, LocationShip, System, SystemsApi } from '../../../src/sdk';
 import { buyCheapestShip, newUserAndConfigAcceptedLoan, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('flight plans', () => {
     let user: User;
-    let ship: Ship;
+    let ship: LocationShip;
     let config: Configuration;
     let systems: System[];
 

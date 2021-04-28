@@ -1,4 +1,4 @@
-import { Configuration, Ship, StructuresApi, System } from '../../../src/sdk';
+import { Configuration, UserShip, StructuresApi, System } from '../../../src/sdk';
 import { newUserAndConfigAcceptedLoan, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
@@ -6,7 +6,7 @@ const TEST_TIMEOUT = 10000;
 describe('user structures', () => {
     let config: Configuration;
     let user: User;
-    let ship: Ship;
+    let ship: UserShip;
     let systems: System[];
 
     beforeAll(async () => {

@@ -11,7 +11,7 @@ properties:
   ships:
     type: array
     items:
-      $ref: ./Ship.yml
+      $ref: ./UserShip.yml
   loans:
     type: array
     items:

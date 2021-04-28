@@ -1,4 +1,4 @@
-import { Configuration, PurchaseOrdersApi, Ship, ShipsApi, System, SystemsApi } from '../../../src/sdk';
+import { Configuration, PurchaseOrdersApi, UserShip, ShipsApi, System, SystemsApi } from '../../../src/sdk';
 import { buyCheapestShip, User, newUserAndConfigAcceptedLoan, sleep } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
@@ -7,8 +7,8 @@ describe('ship operations', () => {
     let config: Configuration;
     let user: User;
     let systems: System[];
-    let shipA: Ship;
-    let shipB: Ship;
+    let shipA: UserShip;
+    let shipB: UserShip;
 
     beforeAll(async () => {
         const response = await newUserAndConfigAcceptedLoan();
@@ -37,7 +37,7 @@ describe('ship operations', () => {
     }, TEST_TIMEOUT);
 
     it(
-        'jettisons cargo',
+        'jettisons cargo and ship cargo lookup',
         async () => {
             const jettison = await new ShipsApi(config).jettisonShipCargo({
                 username: user.user.username,
@@ -47,6 +47,21 @@ describe('ship operations', () => {
                     quantity: 13,
                 },
             });
+
+            const {
+                data: { ship },
+            } = await new ShipsApi(config).getUserShip({
+                username: user.user.username,
+                shipId: shipA.id,
+            });
+
+            expect(ship.cargo).toEqual(
+                expect.arrayContaining([
+                    expect.objectContaining({
+                        good: 'FUEL',
+                    }),
+                ]),
+            );
 
             expect(jettison.data.good).toBe('FUEL');
             expect(jettison.data.quantityRemaining).toBe(37);

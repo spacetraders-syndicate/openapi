@@ -1,4 +1,4 @@
-import { Configuration, FlightPlansApi, Location, PurchaseOrdersApi, Ship, System, SystemsApi } from '../../../src/sdk';
+import { Configuration, FlightPlansApi, Location, PurchaseOrdersApi, UserShip, System, SystemsApi } from '../../../src/sdk';
 import { buyCheapestShip, newUserAndConfigAcceptedLoan, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
@@ -6,7 +6,7 @@ const TEST_TIMEOUT = 10000;
 describe('user flight plans', () => {
     let config: Configuration;
     let user: User;
-    let ship: Ship;
+    let ship: UserShip;
     let systems: System[];
 
     beforeAll(async () => {

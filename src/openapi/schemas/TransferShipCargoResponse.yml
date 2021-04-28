@@ -4,6 +4,6 @@ required:
   - toShip
 properties:
   fromShip:
-    $ref: ./Ship.yml
+    $ref: ./UserShip.yml
   toShip:
-    $ref: ./Ship.yml
+    $ref: ./UserShip.yml

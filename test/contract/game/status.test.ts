@@ -4,8 +4,6 @@ import { sleep } from '../../utils';
 const TEST_TIMEOUT = 10000;
 
 describe('fetch game status', () => {
-    beforeAll(async () => {});
-
     beforeEach(async () => {
         await sleep();
     }, TEST_TIMEOUT);

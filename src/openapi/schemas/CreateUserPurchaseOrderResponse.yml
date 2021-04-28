@@ -8,6 +8,6 @@ properties:
     type: number
     example: 74300
   ship:
-    $ref: ./Ship.yml
+    $ref: ./UserShip.yml
   order:
     $ref: ./Order.yml

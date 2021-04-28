@@ -7,4 +7,4 @@ properties:
     type: number
     example: 178875
   ship:
-    $ref: ./Ship.yml
+    $ref: ./UserShip.yml

@@ -3,4 +3,4 @@ required:
   - ship
 properties:
   ship:
-    $ref: ./Ship.yml
+    $ref: ./UserShip.yml
