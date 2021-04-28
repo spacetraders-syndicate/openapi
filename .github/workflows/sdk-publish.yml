@@ -16,6 +16,6 @@ jobs:
       - run: npm ci
       - run: npm build
       - uses: JS-DevTools/npm-publish@v1
-        working-directory: src/sdk
         with:
+          package: ./src/sdk/package.json
           token: ${{ secrets.NPM_TOKEN }}
