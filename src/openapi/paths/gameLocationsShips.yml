@@ -1,6 +1,8 @@
 get:
   operationId: listGameLocationsShips
   summary: List Game Locations Ships
+  tags:
+    - locations
   responses:
     200:
       description: Success

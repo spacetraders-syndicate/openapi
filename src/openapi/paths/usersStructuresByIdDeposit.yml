@@ -1,6 +1,8 @@
 post:
   operationId: depositStructureIenventory
   summary: Deposit Structure Inventory
+  tags:
+    - structures
   requestBody:
     content:
       application/json:

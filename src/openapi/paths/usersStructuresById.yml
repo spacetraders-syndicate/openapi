@@ -1,6 +1,8 @@
 get:
   operationId: getUserStructure
   summary: Get User's Structure Info
+  tags:
+    - structures
   responses:
     200:
       description: Success

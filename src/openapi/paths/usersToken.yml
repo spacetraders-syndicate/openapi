@@ -1,6 +1,8 @@
 post:
   operationId: createUserToken
   summary: Claim Username and Get Token
+  tags:
+    - users
   responses:
     200:
       description: Success

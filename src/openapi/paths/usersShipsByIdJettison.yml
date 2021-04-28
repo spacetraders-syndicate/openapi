@@ -1,6 +1,8 @@
 put:
   operationId: jettisonShipCargo
   summary: Jettison Ship Cargo
+  tags:
+    - ships
   requestBody:
     content:
       application/json:

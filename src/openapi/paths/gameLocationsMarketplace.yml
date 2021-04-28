@@ -1,6 +1,8 @@
 get:
   operationId: getGameLocationMarketplace
   summary: Get Game Locations Marketplace
+  tags:
+    - marketplace
   responses:
     200:
       description: Success

@@ -1,6 +1,8 @@
 get:
   operationId: getUser
   summary: Get User
+  tags:
+    - users
   responses:
     200:
       description: Success

@@ -1,6 +1,8 @@
 post:
   operationId: createUserSellOrder
   summary: Create a New Sell  Order
+  tags:
+    - sell orders
   requestBody:
     content:
       application/json:

@@ -1,6 +1,8 @@
 post:
   operationId: createUserStructure
   summary: Create User Structure
+  tags:
+    - structures
   requestBody:
     content:
       application/json:
@@ -16,7 +18,9 @@ post:
 
 get:
   operationId: listUserStructures
-  summary: List User's Ships
+  summary: List User's Structures
+  tags:
+    - structures
   responses:
     200:
       description: Success

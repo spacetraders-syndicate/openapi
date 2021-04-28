@@ -1,6 +1,8 @@
 get:
   operationId: getGameLocation
   summary: Get Game Location
+  tags:
+     - locations
   responses:
     200:
       description: Success

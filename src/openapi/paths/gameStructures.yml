@@ -1,6 +1,8 @@
 get:
   operationId: listGameStructures
   summary: List Game Structures
+  tags:
+    - structures
   responses:
     200:
       description: Success

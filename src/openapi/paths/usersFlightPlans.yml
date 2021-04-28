@@ -1,6 +1,8 @@
 post:
   operationId: createUserFlightPlan
   summary: Create User Flight Plan
+  tags:
+    - flight plans
   requestBody:
     content:
       application/json:

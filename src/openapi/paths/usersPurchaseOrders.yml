@@ -1,6 +1,8 @@
 post:
   operationId: createUserPurchaseOrder
   summary: Create a New Purchase Order
+  tags:
+    - purchase orders
   requestBody:
     content:
       application/json:

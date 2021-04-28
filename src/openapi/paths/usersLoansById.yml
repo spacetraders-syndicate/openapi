@@ -1,6 +1,8 @@
 put:
   operationId: payoffUserLoan
   summary: Payoff a Loan
+  tags:
+    - loans
   responses:
     200:
       description: Success

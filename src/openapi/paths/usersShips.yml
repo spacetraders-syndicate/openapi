@@ -1,6 +1,8 @@
 post:
   operationId: buyUserShip
   summary: Buy User Ship
+  tags:
+    - ships
   requestBody:
     content:
       application/json:
@@ -17,6 +19,8 @@ post:
 get:
   operationId: listUserShips
   summary: List User's Ships
+  tags:
+    - ships
   responses:
     200:
       description: Success

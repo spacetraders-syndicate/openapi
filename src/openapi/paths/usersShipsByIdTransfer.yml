@@ -1,6 +1,8 @@
 put:
   operationId: transferShipCargo
   summary: Transfer Ship Cargo
+  tags:
+    - ships
   requestBody:
     content:
       application/json:

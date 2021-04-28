@@ -72,3 +72,16 @@ components:
       scheme: bearer
 security:
   - bearerAuth: []
+
+tags:
+  - name: flight plans
+  - name: game
+  - name: loans
+  - name: locations
+  - name: marketplace
+  - name: purchase orders
+  - name: sell orders
+  - name: ships
+  - name: structures
+  - name: systems
+  - name: users

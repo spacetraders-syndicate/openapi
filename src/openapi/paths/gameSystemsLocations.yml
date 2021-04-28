@@ -1,6 +1,8 @@
 get:
   operationId: listSystemLocations
   summary: List System Locations
+  tags:
+    - locations
   parameters:
     - in: query
       name: type

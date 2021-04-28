@@ -1,6 +1,8 @@
 get:
   operationId: listGameSystemFlightPlans
   summary: List Flight Plans
+  tags:
+    - flight plans
   responses:
     200:
       description: Success

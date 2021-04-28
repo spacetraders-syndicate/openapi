@@ -1,6 +1,8 @@
 get:
   operationId: getGameStatus
   summary: Get Game Status
+  tags:
+    - game
   responses:
     200:
       description: Success

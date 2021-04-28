@@ -1,6 +1,8 @@
 get:
   operationId: getUserShip
   summary: Get User's Ship Info
+  tags:
+    - ships
   responses:
     200:
       description: Success
@@ -12,6 +14,8 @@ get:
 delete:
   operationId: scrapUserShip
   summary: Scrap User's Ship
+  tags:
+    - ships
   responses:
     200:
       description: Success

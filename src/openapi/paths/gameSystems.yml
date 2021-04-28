@@ -1,6 +1,8 @@
 get:
   operationId: listGameSystems
   summary: List Game Systems
+  tags:
+    - systems
   responses:
     200:
       description: Success

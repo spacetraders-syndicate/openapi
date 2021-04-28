@@ -1,6 +1,8 @@
 get:
   operationId: listGamePurchasableShips
   summary: List Game Purchasable Ships
+  tags:
+    - ships
   responses:
     200:
       description: Success

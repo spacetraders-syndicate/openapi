@@ -1,6 +1,8 @@
 post:
   operationId: createUserLoan
   summary: Create a New Loan
+  tags:
+    - loans
   requestBody:
     content:
       application/json:
@@ -17,6 +19,8 @@ post:
 get:
   operationId: listUserLoans
   summary: List User's Loans
+  tags:
+    - loans
   responses:
     200:
       description: Success
