@@ -14,5 +14,16 @@ post:
           schema:
             $ref: ../schemas/BuyUserShipResponse.yml
 
+get:
+  operationId: listUserShips
+  summary: List User's Ships
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/ListUserShipsResponse.yml
+
 parameters:
   - $ref: ../schemas/ParameterUsername.yml

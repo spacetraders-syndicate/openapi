@@ -47,9 +47,41 @@ describe('user ships', () => {
   );
 
   it(
-    'scrap ship',
+    'list user ships',
     async () => {
+        const userShips = await api.listUserShips({
+            username: user.user.username
+        })
         
+        expect(userShips.data.ships.length).toBe(1);
+        expect(userShips.data.ships[0].id).toBe(purchasedShip.id);
+    },
+    TEST_TIMEOUT
+  );
+
+  it(
+    'gets ship info',
+    async () => {
+        const shipInfo = await api.getUserShip({
+            username: user.user.username,
+            shipId: purchasedShip.id
+        })
+        
+        expect(shipInfo.data.ship.id).toBe(purchasedShip.id);
+        expect(shipInfo.data.ship.location).toBeDefined();
+    },
+    TEST_TIMEOUT
+  );
+
+  it(
+    'scraps ship',
+    async () => {
+        const scrapedShip = await api.scrapUserShip({
+            username: user.user.username,
+            shipId: purchasedShip.id
+        })
+
+        expect(scrapedShip.data.success).toContain("scrapped");
     },
     TEST_TIMEOUT
   );
