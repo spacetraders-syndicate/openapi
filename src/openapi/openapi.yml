@@ -35,6 +35,8 @@ paths:
     $ref: ./paths/gameLocationsShips.yml
   /game/systems/{symbol}/flight-plans:
     $ref: ./paths/gameSystemsFlightPlans.yml
+  /game/locations/{symbol}/marketplace:
+    $ref: ./paths/gameLocationsMarketplace.yml
   /game/loans:
     $ref: ./paths/gameLoans.yml
   /game/ships:

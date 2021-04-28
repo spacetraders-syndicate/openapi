@@ -1,0 +1,13 @@
+get:
+  operationId: getGameLocationMarketplace
+  summary: Get Game Locations Marketplace
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/GetGameLocationMarketplaceResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterSymbol.yml

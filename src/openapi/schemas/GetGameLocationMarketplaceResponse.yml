@@ -1,0 +1,33 @@
+type: object
+required:
+  - location
+properties:
+  location:
+    type: object
+    required:
+      - marketplace
+      - name
+      - symbol
+      - type
+      - x
+      - 'y'
+    properties:
+      marketplace:
+        type: array
+        items:
+          $ref: ./MarketplaceGood.yml
+      name:
+        type: string
+        example: Beta Giant
+      symbol:
+        type: string
+        example: OE-BG1
+      type:
+        type: string
+        example: GAS_GIANT
+      x:
+        type: number
+        example: 12
+      y:
+        type: number
+        example: -1

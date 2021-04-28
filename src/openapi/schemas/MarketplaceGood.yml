@@ -1,0 +1,31 @@
+type: object
+required:
+  - symbol
+  - volumePerUnit
+  - quantityAvailable
+  - pricePerUnit
+  - purchasePricePerUnit
+  - spread
+  - sellPricePerUnit
+properties:
+  symbol:
+    type: string
+    example: MACHINERY
+  volumePerUnit:
+    type: number
+    example: 1
+  quantityAvailable:
+    type: number
+    example: 1539
+  pricePerUnit:
+    type: number
+    example: 136
+  purchasePricePerUnit:
+    type: number
+    example: 136
+  spread:
+    type: number
+    example: 1
+  sellPricePerUnit:
+    type: number
+    example: 135
