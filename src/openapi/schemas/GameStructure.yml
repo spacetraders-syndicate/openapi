@@ -1,0 +1,31 @@
+type: object
+required:
+  - allowedLocationTypes
+  - consumes
+  - price
+  - produces
+  - symbol
+  - name
+properties:
+  allowedLocationTypes:
+    type: array
+    items:
+      type: string
+      example: PLANET
+  consumes:
+    type: array
+    items:
+      type: string
+  produces:
+    type: array
+    items:
+      type: string
+  symbol:
+    type: string
+    example: FARM
+  price:
+    type: number
+    example: 500000
+  name:
+    type: string
+    example: Farm

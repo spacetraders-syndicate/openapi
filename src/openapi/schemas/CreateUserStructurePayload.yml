@@ -1,0 +1,11 @@
+type: object
+required:
+  - location
+  - type
+properties:
+  location:
+    type: string
+    example: OE
+  type:
+    type: string
+    example: FARM

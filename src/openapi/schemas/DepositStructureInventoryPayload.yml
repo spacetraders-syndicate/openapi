@@ -1,0 +1,15 @@
+type: object
+required:
+  - shipId
+  - good
+  - quantity
+properties:
+  shipId:
+    type: string
+    example: ckno69qb105191ds69utcsztz
+  good:
+    type: string
+    example: METAL
+  quantity:
+    type: number
+    example: 40

@@ -1,0 +1,10 @@
+get:
+  operationId: listGameStructures
+  summary: List Game Structures
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/ListGameStructuresResponse.yml

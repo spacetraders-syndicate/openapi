@@ -1,0 +1,7 @@
+name: structureId
+in: path
+example: ckno69qb105191ds69utcsztz
+required: true
+schema:
+  type: string
+style: simple

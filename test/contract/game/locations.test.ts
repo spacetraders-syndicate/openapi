@@ -52,6 +52,8 @@ describe('system locations', () => {
                 expect(location.allowsConstruction).toBe(true);
             });
 
+            await sleep();
+
             const {
                 data: { locations: locationsTypeMoon },
             } = await api.listSystemLocations({
@@ -63,7 +65,7 @@ describe('system locations', () => {
                 expect(location.type).toBe('MOON');
             });
         },
-        TEST_TIMEOUT,
+        TEST_TIMEOUT * 2,
     );
 
     it(
@@ -85,6 +87,7 @@ describe('system locations', () => {
         'fetches location ships',
         async () => {
             const ship = await buyCheapestShip(user.user, api);
+            sleep();
             const {
                 data: { location },
             } = await api.listGameLocationsShips({
@@ -98,6 +101,6 @@ describe('system locations', () => {
                 ]),
             );
         },
-        TEST_TIMEOUT,
+        TEST_TIMEOUT * 2,
     );
 });

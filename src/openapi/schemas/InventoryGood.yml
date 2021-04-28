@@ -1,0 +1,11 @@
+type: object
+required:
+  - good
+  - quantity
+properties:
+  good:
+    type: string
+    example: METALS
+  quantity:
+    type: number
+    example: 10

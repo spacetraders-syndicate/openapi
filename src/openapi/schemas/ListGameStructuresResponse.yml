@@ -1,0 +1,8 @@
+type: object
+required:
+  - structures
+properties:
+  structures:
+    type: array
+    items:
+      $ref: ./GameStructure.yml

@@ -1,0 +1,14 @@
+get:
+  operationId: getUserStructure
+  summary: Get User's Structure Info
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/GetUserStructureResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterUsername.yml
+  - $ref: ../schemas/ParameterStructureId.yml

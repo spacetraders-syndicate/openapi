@@ -1,0 +1,6 @@
+type: object
+required:
+  - structure
+properties:
+  structure:
+    $ref: ./LocationStructure.yml

@@ -14,7 +14,7 @@ paths:
   /users/{username}/token:
     $ref: ./paths/usersToken.yml
   /users/{username}:
-    $ref: ./paths/users.yml
+    $ref: ./paths/usersById.yml
   /users/{username}/ships:
     $ref: ./paths/usersShips.yml
   /users/{username}/sell-orders:
@@ -27,6 +27,14 @@ paths:
     $ref: ./paths/usersShipsByIdTransfer.yml
   /users/{username}/loans:
     $ref: ./paths/usersLoans.yml
+  /users/{username}/structures:
+    $ref: ./paths/usersStructures.yml
+  /users/{username}/structures/{structureId}:
+    $ref: ./paths/usersStructuresById.yml
+  /users/{username}/structures/{structureId}/deposit:
+    $ref: ./paths/usersStructuresByIdDeposit.yml
+  /users/{username}/structures/{structureId}/transfer:
+    $ref: ./paths/usersStructuresByIdTransfer.yml
   /users/{username}/loans/{loanId}:
     $ref: ./paths/usersLoansById.yml
   /users/{username}/purchase-orders:
@@ -43,6 +51,8 @@ paths:
     $ref: ./paths/gameSystemsFlightPlans.yml
   /game/locations/{symbol}/marketplace:
     $ref: ./paths/gameLocationsMarketplace.yml
+  /game/structures:
+    $ref: ./paths/gameStructures.yml
   /game/loans:
     $ref: ./paths/gameLoans.yml
   /game/ships:

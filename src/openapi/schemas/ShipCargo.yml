@@ -1,0 +1,8 @@
+type: object
+required:
+  - cargo
+properties:
+  cargo:
+    type: array
+    items:
+      $ref: ./InventoryGood.yml

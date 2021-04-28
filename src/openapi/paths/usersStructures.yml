@@ -1,0 +1,29 @@
+post:
+  operationId: createUserStructure
+  summary: Create User Structure
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../schemas/CreateUserStructurePayload.yml
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/CreateUserStructureResponse.yml
+
+get:
+  operationId: listUserStructures
+  summary: List User's Ships
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/ListUserStructuresResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterUsername.yml

@@ -1,0 +1,19 @@
+type: object
+required:
+  - transfer
+  - ship
+  - structure
+properties:
+  transfer:
+    $ref: ./InventoryGood.yml
+  ship:
+    $ref: ./ShipCargo.yml
+  structure:
+    type: object
+    required:
+      - inventory
+    properties:
+      inventory:
+        type: array
+        items:
+          $ref: ./InventoryGood.yml

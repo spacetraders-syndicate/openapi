@@ -1,0 +1,19 @@
+post:
+  operationId: depositStructureIenventory
+  summary: Deposit Structure Inventory
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../schemas/DepositStructureInventoryPayload.yml
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/DepositStructureInventoryResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterUsername.yml
+  - $ref: ../schemas/ParameterStructureId.yml
