@@ -1,9 +1,9 @@
 name: sdk
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["tests"]
+    branches: [main]
 
 jobs:
   npm:

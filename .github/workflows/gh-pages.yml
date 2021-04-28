@@ -1,9 +1,9 @@
 name: website
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ['tests']
+    branches: [main]
 
 jobs:
   publish:
