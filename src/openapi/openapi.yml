@@ -4,7 +4,7 @@ info:
   description: A SpaceTraders.io API OpenAPI Spec from SpaceTraders Syndicate
   version: 1.0.0
   contact:
-    email: jaredlshort@gmail.com
+    email: spacetraders.syndicate@gmail.com
 servers:
   - url: https://api.spacetraders.io
     description: Production
