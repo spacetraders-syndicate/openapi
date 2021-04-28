@@ -1,11 +1,16 @@
-import { DefaultApi as API, Ship, User, System } from '../../src/sdk';
+import { Configuration, Ship, User, System, ShipsApi } from '../../src/sdk';
 import { sleep } from './sleep';
 
-export async function buyCheapestShip(user: User, api: API, systemSymbol?: System['symbol']): Promise<Ship> {
+export async function buyCheapestShip(
+    user: User,
+    config: Configuration,
+    systemSymbol?: System['symbol'],
+): Promise<Ship> {
     await sleep(1);
+    const shipsClient = await new ShipsApi(config);
     let {
         data: { ships },
-    } = await api.listGamePurchasableShips();
+    } = await shipsClient.listGamePurchasableShips();
 
     // filter to only ship purchase options from a particular system
     if (systemSymbol) {
@@ -35,7 +40,7 @@ export async function buyCheapestShip(user: User, api: API, systemSymbol?: Syste
 
     const {
         data: { ship },
-    } = await api.buyUserShip({
+    } = await shipsClient.buyUserShip({
         username: user.username,
         buyUserShipPayload: {
             type: cheapestShip.type,

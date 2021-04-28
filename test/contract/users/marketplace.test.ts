@@ -1,24 +1,24 @@
-import { DefaultApi as API, Ship, System } from '../../../src/sdk';
-import { buyCheapestShip, User, newUserAndApiClientAcceptedLoan, sleep } from '../../utils';
+import { Configuration, PurchaseOrdersApi, SellOrdersApi, Ship, System, SystemsApi } from '../../../src/sdk';
+import { buyCheapestShip, User, newUserAndConfigAcceptedLoan, sleep } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('user marketplace', () => {
-    let api: API;
+    let config: Configuration;
     let user: User;
     let systems: System[];
     let ship: Ship;
 
     beforeAll(async () => {
-        const response = await newUserAndApiClientAcceptedLoan();
-        api = response.api;
+        const response = await newUserAndConfigAcceptedLoan();
+        config = response.config;
         user = response.user;
 
         const {
             data: { systems: returnedSystems },
-        } = await api.listGameSystems();
+        } = await new SystemsApi(config).listGameSystems();
         systems = returnedSystems;
-        ship = await buyCheapestShip(user.user, api, systems[0].symbol);
+        ship = await buyCheapestShip(user.user, config, systems[0].symbol);
     });
 
     beforeEach(async () => {
@@ -28,7 +28,7 @@ describe('user marketplace', () => {
     it(
         'sell at marketplace',
         async () => {
-            const purchasedFuel = await api.createUserPurchaseOrder({
+            const purchasedFuel = await new PurchaseOrdersApi(config).createUserPurchaseOrder({
                 username: user.user.username,
                 createUserPurchaseOrderPayload: {
                     shipId: ship.id,
@@ -37,7 +37,7 @@ describe('user marketplace', () => {
                 },
             });
 
-            const sellFuelOrder = await api.createUserSellOrder({
+            const sellFuelOrder = await new SellOrdersApi(config).createUserSellOrder({
                 username: user.user.username,
                 createUserSellOrderPayload: {
                     shipId: ship.id,

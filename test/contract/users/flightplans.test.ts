@@ -1,23 +1,23 @@
-import { DefaultApi as API, Location, Ship, System } from '../../../src/sdk';
-import { buyCheapestShip, newUserAndApiClientAcceptedLoan, sleep, User } from '../../utils';
+import { Configuration, FlightPlansApi, Location, PurchaseOrdersApi, Ship, System, SystemsApi } from '../../../src/sdk';
+import { buyCheapestShip, newUserAndConfigAcceptedLoan, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('user flight plans', () => {
-    let api: API;
+    let config: Configuration;
     let user: User;
     let ship: Ship;
     let systems: System[];
 
     beforeAll(async () => {
-        const response = await newUserAndApiClientAcceptedLoan();
-        api = response.api;
+        const response = await newUserAndConfigAcceptedLoan();
+        config = response.config;
         user = response.user;
         const {
             data: { systems: systemsResponse },
-        } = await api.listGameSystems();
+        } = await new SystemsApi(config).listGameSystems();
         systems = systemsResponse;
-        ship = await buyCheapestShip(user.user, api, systems[0].symbol);
+        ship = await buyCheapestShip(user.user, config, systems[0].symbol);
     });
 
     beforeEach(async () => {
@@ -32,7 +32,7 @@ describe('user flight plans', () => {
                 return location.symbol !== ship.location;
             }) as Location;
 
-            const purchasedFuel = await api.createUserPurchaseOrder({
+            const purchasedFuel = await new PurchaseOrdersApi(config).createUserPurchaseOrder({
                 username: user.user.username,
                 createUserPurchaseOrderPayload: {
                     shipId: ship.id,
@@ -41,7 +41,7 @@ describe('user flight plans', () => {
                 },
             });
 
-            const flightPlan = await api.createUserFlightPlan({
+            const flightPlan = await new FlightPlansApi(config).createUserFlightPlan({
                 username: user.user.username,
                 createUserFlightPlanPayload: {
                     shipId: ship.id,

@@ -1,21 +1,21 @@
-import { DefaultApi as API, PurchaseableShip, Ship } from '../../../src/sdk';
-import { newUserAndApiClientAcceptedLoan, sleep, User } from '../../utils';
+import { Configuration, PurchaseableShip, Ship, ShipsApi } from '../../../src/sdk';
+import { newUserAndConfigAcceptedLoan, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('user ships', () => {
-    let api: API;
+    let config: Configuration;
     let user: User;
     let purchaseableShips: PurchaseableShip[];
     let purchasedShip: Ship;
 
     beforeAll(async () => {
-        const response = await newUserAndApiClientAcceptedLoan();
-        api = response.api;
+        const response = await newUserAndConfigAcceptedLoan();
+        config = response.config;
         user = response.user;
         const {
             data: { ships },
-        } = await api.listGamePurchasableShips();
+        } = await new ShipsApi(config).listGamePurchasableShips();
         purchaseableShips = ships;
     });
 
@@ -39,7 +39,7 @@ describe('user ships', () => {
 
             const {
                 data: { ship },
-            } = await api.buyUserShip({
+            } = await new ShipsApi(config).buyUserShip({
                 username: user.user.username,
                 buyUserShipPayload: {
                     type: cheapestShip.type,
@@ -59,7 +59,7 @@ describe('user ships', () => {
     it(
         'list user ships',
         async () => {
-            const userShips = await api.listUserShips({
+            const userShips = await new ShipsApi(config).listUserShips({
                 username: user.user.username,
             });
 
@@ -72,7 +72,7 @@ describe('user ships', () => {
     it(
         'gets ship info',
         async () => {
-            const shipInfo = await api.getUserShip({
+            const shipInfo = await new ShipsApi(config).getUserShip({
                 username: user.user.username,
                 shipId: purchasedShip.id,
             });
@@ -86,7 +86,7 @@ describe('user ships', () => {
     it(
         'scraps ship',
         async () => {
-            const scrapedShip = await api.scrapUserShip({
+            const scrapedShip = await new ShipsApi(config).scrapUserShip({
                 username: user.user.username,
                 shipId: purchasedShip.id,
             });

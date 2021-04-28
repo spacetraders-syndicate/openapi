@@ -1,17 +1,14 @@
-import { DefaultApi as API, Ship, System } from '../../../src/sdk';
-import { buyCheapestShip, newUserAndApiClientAcceptedLoan, sleep, User } from '../../utils';
+import { Configuration, StructuresApi } from '../../../src/sdk';
+import { newUserAndConfigAcceptedLoan, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('game structures', () => {
-    let api: API;
+    let config: Configuration;
     let user: User;
-    let ship: Ship;
-    let systems: System[];
-
     beforeAll(async () => {
-        const response = await newUserAndApiClientAcceptedLoan();
-        api = response.api;
+        const response = await newUserAndConfigAcceptedLoan();
+        config = response.config;
         user = response.user;
     });
 
@@ -24,7 +21,7 @@ describe('game structures', () => {
         async () => {
             const {
                 data: { structures },
-            } = await api.listGameStructures();
+            } = await new StructuresApi(config).listGameStructures();
             expect(structures[0].price).toBeGreaterThan(0);
             expect(structures.length).toBeGreaterThan(0);
         },

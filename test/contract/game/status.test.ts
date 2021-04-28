@@ -1,14 +1,10 @@
-import { DefaultApi as API } from '../../../src/sdk';
+import { GameApi } from '../../../src/sdk';
 import { sleep } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('fetch game status', () => {
-    let api: API;
-
-    beforeAll(async () => {
-        api = new API();
-    });
+    beforeAll(async () => {});
 
     beforeEach(async () => {
         await sleep();
@@ -17,7 +13,7 @@ describe('fetch game status', () => {
     it(
         'fetches status',
         async () => {
-            const status = await api.getGameStatus();
+            const status = await new GameApi().getGameStatus();
             expect(status.data.status).toContain('available');
         },
         TEST_TIMEOUT,

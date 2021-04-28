@@ -1,15 +1,15 @@
-import { DefaultApi as API } from '../../../src/sdk';
-import { newUserAndApiClient, sleep, User } from '../../utils';
+import { Configuration, UsersApi } from '../../../src/sdk';
+import { newUserAndConfiguration, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('user info', () => {
-    let api: API;
+    let config: Configuration;
     let user: User;
 
     beforeAll(async () => {
-        const response = await newUserAndApiClient();
-        api = response.api;
+        const response = await newUserAndConfiguration();
+        config = response.config;
         user = response.user;
     });
 
@@ -20,7 +20,7 @@ describe('user info', () => {
     it(
         'fetches info',
         async () => {
-            const userInfo = await api.getUser({
+            const userInfo = await new UsersApi(config).getUser({
                 username: user.user.username,
             });
             expect(userInfo.data.user.credits).toBe(0);

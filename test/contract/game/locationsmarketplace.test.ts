@@ -1,24 +1,24 @@
-import { DefaultApi as API, Ship, System } from '../../../src/sdk';
-import { buyCheapestShip, User, newUserAndApiClientAcceptedLoan, sleep } from '../../utils';
+import { Configuration, MarketplaceApi, Ship, System, SystemsApi } from '../../../src/sdk';
+import { buyCheapestShip, User, newUserAndConfigAcceptedLoan, sleep } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('system locations', () => {
-    let api: API;
+    let config: Configuration;
     let user: User;
     let systems: System[];
     let ship: Ship;
 
     beforeAll(async () => {
-        const response = await newUserAndApiClientAcceptedLoan();
-        api = response.api;
+        const response = await newUserAndConfigAcceptedLoan();
+        config = response.config;
         user = response.user;
 
         const {
             data: { systems: returnedSystems },
-        } = await api.listGameSystems();
+        } = await new SystemsApi(config).listGameSystems();
         systems = returnedSystems;
-        ship = await buyCheapestShip(user.user, api, systems[0].symbol);
+        ship = await buyCheapestShip(user.user, config, systems[0].symbol);
     });
 
     beforeEach(async () => {
@@ -30,7 +30,7 @@ describe('system locations', () => {
         async () => {
             const {
                 data: { location },
-            } = await api.getGameLocationMarketplace({
+            } = await new MarketplaceApi(config).getGameLocationMarketplace({
                 symbol: ship.location,
             });
             expect(location.marketplace.length).toBeGreaterThan(0);

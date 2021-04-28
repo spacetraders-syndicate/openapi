@@ -1,21 +1,21 @@
-import { DefaultApi as API, System } from '../../../src/sdk';
-import { buyCheapestShip, User, newUserAndApiClientAcceptedLoan, sleep } from '../../utils';
+import { Configuration, LocationsApi, System, SystemsApi } from '../../../src/sdk';
+import { buyCheapestShip, User, newUserAndConfigAcceptedLoan, sleep } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('system locations', () => {
-    let api: API;
+    let config: Configuration;
     let user: User;
     let systems: System[];
 
     beforeAll(async () => {
-        const response = await newUserAndApiClientAcceptedLoan();
-        api = response.api;
+        const response = await newUserAndConfigAcceptedLoan();
+        config = response.config;
         user = response.user;
 
         const {
             data: { systems: returnedSystems },
-        } = await api.listGameSystems();
+        } = await new SystemsApi(config).listGameSystems();
         systems = returnedSystems;
     });
 
@@ -28,7 +28,7 @@ describe('system locations', () => {
         async () => {
             const {
                 data: { locations },
-            } = await api.listSystemLocations({
+            } = await new LocationsApi(config).listSystemLocations({
                 symbol: systems[0].symbol,
             });
             expect(locations.length).toBeGreaterThanOrEqual(1);
@@ -43,7 +43,7 @@ describe('system locations', () => {
         async () => {
             const {
                 data: { locations: locationsAllowingConstruction },
-            } = await api.listSystemLocations({
+            } = await new LocationsApi(config).listSystemLocations({
                 symbol: systems[0].symbol,
                 allowsConstruction: true,
             });
@@ -56,7 +56,7 @@ describe('system locations', () => {
 
             const {
                 data: { locations: locationsTypeMoon },
-            } = await api.listSystemLocations({
+            } = await new LocationsApi(config).listSystemLocations({
                 symbol: systems[0].symbol,
                 type: 'MOON',
             });
@@ -73,7 +73,7 @@ describe('system locations', () => {
         async () => {
             const {
                 data: { location },
-            } = await api.getGameLocation({
+            } = await new LocationsApi(config).getGameLocation({
                 symbol: systems[0].locations[0].symbol,
             });
 
@@ -86,11 +86,11 @@ describe('system locations', () => {
     it(
         'fetches location ships',
         async () => {
-            const ship = await buyCheapestShip(user.user, api);
+            const ship = await buyCheapestShip(user.user, config);
             sleep();
             const {
                 data: { location },
-            } = await api.listGameLocationsShips({
+            } = await new LocationsApi(config).listGameLocationsShips({
                 symbol: ship.location,
             });
             expect(location.ships).toEqual(

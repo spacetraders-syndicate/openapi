@@ -1,23 +1,24 @@
-import { DefaultApi as API, Ship, System } from '../../../src/sdk';
-import { buyCheapestShip, newUserAndApiClientAcceptedLoan, sleep, User } from '../../utils';
+import { Configuration, FlightPlansApi, Ship, System, SystemsApi } from '../../../src/sdk';
+import { buyCheapestShip, newUserAndConfigAcceptedLoan, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('flight plans', () => {
-    let api: API;
     let user: User;
     let ship: Ship;
+    let config: Configuration;
     let systems: System[];
 
     beforeAll(async () => {
-        const response = await newUserAndApiClientAcceptedLoan();
-        api = response.api;
+        const response = await newUserAndConfigAcceptedLoan();
         user = response.user;
+        config = response.config;
         const {
             data: { systems: systemsResponse },
-        } = await api.listGameSystems();
+        } = await await new SystemsApi(config).listGameSystems();
+
         systems = systemsResponse;
-        ship = await buyCheapestShip(user.user, api, systems[0].symbol);
+        ship = await buyCheapestShip(user.user, config, systems[0].symbol);
     });
 
     beforeEach(async () => {
@@ -29,7 +30,7 @@ describe('flight plans', () => {
         async () => {
             const {
                 data: { flightPlans },
-            } = await api.listGameSystemFlightPlans({
+            } = await new FlightPlansApi(config).listGameSystemFlightPlans({
                 symbol: systems[0].symbol,
             });
             expect(flightPlans.length).toBeGreaterThanOrEqual(0);

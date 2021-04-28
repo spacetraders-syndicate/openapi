@@ -1,4 +1,4 @@
-import { DefaultApi as API, CreateUserTokenResponse, Configuration } from '../../src/sdk';
+import { UsersApi, LoansApi, CreateUserTokenResponse, Configuration } from '../../src/sdk';
 import faker from 'faker';
 
 export type User = CreateUserTokenResponse;
@@ -10,48 +10,49 @@ export async function newUser(): Promise<User> {
         basePath,
     });
 
-    const api = new API(configuration);
-    const user = await api.createUserToken({
+    const usersClient = new UsersApi(configuration);
+    const user = await usersClient.createUserToken({
         username: faker.datatype.uuid(),
     });
     return user.data;
 }
 
-export async function newUserAndApiClient(
+export async function newUserAndConfiguration(
     user?: User,
 ): Promise<{
     user: User;
-    api: API;
+    config: Configuration;
 }> {
     if (!user) user = await newUser();
 
-    const configuration = new Configuration({
+    const config = new Configuration({
         accessToken: user.token,
         basePath,
     });
 
     return {
         user,
-        api: new API(configuration),
+        config,
     };
 }
 
-export async function newUserAndApiClientAcceptedLoan(
+export async function newUserAndConfigAcceptedLoan(
     user?: User,
 ): Promise<{
     user: User;
-    api: API;
+    config: Configuration;
 }> {
     let response;
     if (!user) {
-        response = await newUserAndApiClient();
+        response = await newUserAndConfiguration();
     } else {
-        response = await newUserAndApiClient(user);
+        response = await newUserAndConfiguration(user);
     }
+    const loansClient = new LoansApi(response.config);
     const {
         data: { loans },
-    } = await response.api.listGameLoans();
-    await response.api.createUserLoan({
+    } = await loansClient.listGameLoans();
+    await loansClient.createUserLoan({
         username: response.user.user.username,
         createUserLoanPayload: {
             type: loans[0].type,

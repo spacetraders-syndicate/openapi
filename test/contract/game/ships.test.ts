@@ -1,15 +1,15 @@
-import { DefaultApi as API } from '../../../src/sdk';
-import { newUserAndApiClient, sleep, User } from '../../utils';
+import { Configuration, ShipsApi } from '../../../src/sdk';
+import { newUserAndConfiguration, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('ships', () => {
-    let api: API;
+    let config: Configuration;
     let user: User;
 
     beforeAll(async () => {
-        const response = await newUserAndApiClient();
-        api = response.api;
+        const response = await newUserAndConfiguration();
+        config = response.config;
         user = response.user;
     });
 
@@ -22,7 +22,7 @@ describe('ships', () => {
         async () => {
             const {
                 data: { ships },
-            } = await api.listGamePurchasableShips();
+            } = await new ShipsApi(config).listGamePurchasableShips();
             expect(ships.length).toBeGreaterThan(0);
             expect(ships[0].purchaseLocations.length).toBeGreaterThan(0);
         },

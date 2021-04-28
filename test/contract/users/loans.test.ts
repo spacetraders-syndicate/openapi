@@ -1,15 +1,15 @@
-import { DefaultApi as API } from '../../../src/sdk';
-import { newUserAndApiClientAcceptedLoan, sleep, User } from '../../utils';
+import { Configuration, LoansApi } from '../../../src/sdk';
+import { newUserAndConfigAcceptedLoan, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('user info', () => {
-    let api: API;
+    let config: Configuration;
     let user: User;
 
     beforeAll(async () => {
-        const response = await newUserAndApiClientAcceptedLoan();
-        api = response.api;
+        const response = await newUserAndConfigAcceptedLoan();
+        config = response.config;
         user = response.user;
     });
 
@@ -22,7 +22,7 @@ describe('user info', () => {
         async () => {
             const {
                 data: { loans },
-            } = await api.listUserLoans({
+            } = await new LoansApi(config).listUserLoans({
                 username: user.user.username,
             });
             expect(loans.length).toBe(1);

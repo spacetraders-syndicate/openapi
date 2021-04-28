@@ -1,17 +1,17 @@
-import { DefaultApi as API, Ship, System } from '../../../src/sdk';
-import { buyCheapestShip, newUserAndApiClientAcceptedLoan, sleep, User } from '../../utils';
+import { Configuration, Ship, StructuresApi, System } from '../../../src/sdk';
+import { newUserAndConfigAcceptedLoan, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('user structures', () => {
-    let api: API;
+    let config: Configuration;
     let user: User;
     let ship: Ship;
     let systems: System[];
 
     beforeAll(async () => {
-        const response = await newUserAndApiClientAcceptedLoan();
-        api = response.api;
+        const response = await newUserAndConfigAcceptedLoan();
+        config = response.config;
         user = response.user;
     });
 
@@ -24,7 +24,7 @@ describe('user structures', () => {
         async () => {
             const {
                 data: { structures },
-            } = await api.listUserStructures({
+            } = await new StructuresApi(config).listUserStructures({
                 username: user.user.username,
             });
 

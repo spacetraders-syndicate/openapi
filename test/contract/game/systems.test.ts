@@ -1,15 +1,15 @@
-import { DefaultApi as API } from '../../../src/sdk';
-import { newUserAndApiClient, sleep, User } from '../../utils';
+import { Configuration, SystemsApi } from '../../../src/sdk';
+import { newUserAndConfiguration, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('systems', () => {
-    let api: API;
+    let config: Configuration;
     let user: User;
 
     beforeAll(async () => {
-        const response = await newUserAndApiClient();
-        api = response.api;
+        const response = await newUserAndConfiguration();
+        config = response.config;
         user = response.user;
     });
 
@@ -22,7 +22,7 @@ describe('systems', () => {
         async () => {
             const {
                 data: { systems },
-            } = await api.listGameSystems();
+            } = await new SystemsApi(config).listGameSystems();
             expect(systems.length).toBeGreaterThan(0);
             expect(systems[0].locations.length).toBeGreaterThan(0);
             expect(systems[0].name).toBeDefined();

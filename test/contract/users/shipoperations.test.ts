@@ -1,28 +1,28 @@
-import { DefaultApi as API, Ship, System } from '../../../src/sdk';
-import { buyCheapestShip, User, newUserAndApiClientAcceptedLoan, sleep } from '../../utils';
+import { Configuration, PurchaseOrdersApi, Ship, ShipsApi, System, SystemsApi } from '../../../src/sdk';
+import { buyCheapestShip, User, newUserAndConfigAcceptedLoan, sleep } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
 describe('ship operations', () => {
-    let api: API;
+    let config: Configuration;
     let user: User;
     let systems: System[];
     let shipA: Ship;
     let shipB: Ship;
 
     beforeAll(async () => {
-        const response = await newUserAndApiClientAcceptedLoan();
-        api = response.api;
+        const response = await newUserAndConfigAcceptedLoan();
+        config = response.config;
         user = response.user;
 
         const {
             data: { systems: returnedSystems },
-        } = await api.listGameSystems();
+        } = await new SystemsApi(config).listGameSystems();
         systems = returnedSystems;
 
-        shipA = await buyCheapestShip(user.user, api, systems[0].symbol);
-        shipB = await buyCheapestShip(user.user, api, systems[0].symbol);
-        const purchasedFuel = await api.createUserPurchaseOrder({
+        shipA = await buyCheapestShip(user.user, config, systems[0].symbol);
+        shipB = await buyCheapestShip(user.user, config, systems[0].symbol);
+        const purchasedFuel = await new PurchaseOrdersApi(config).createUserPurchaseOrder({
             username: user.user.username,
             createUserPurchaseOrderPayload: {
                 shipId: shipA.id,
@@ -39,7 +39,7 @@ describe('ship operations', () => {
     it(
         'jettisons cargo',
         async () => {
-            const jettison = await api.jettisonShipCargo({
+            const jettison = await new ShipsApi(config).jettisonShipCargo({
                 username: user.user.username,
                 shipId: shipA.id,
                 jettisonShipCargoPayload: {
@@ -57,7 +57,7 @@ describe('ship operations', () => {
     it(
         'transfers cargo',
         async () => {
-            const transfer = await api.transferShipCargo({
+            const transfer = await new ShipsApi(config).transferShipCargo({
                 username: user.user.username,
                 fromShipId: shipA.id,
                 transferShipCargoPayload: {
