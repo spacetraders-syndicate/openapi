@@ -1,0 +1,8 @@
+type: object
+required:
+  - locations
+properties:
+  locations:
+    type: array
+    items:
+      $ref: ./Location.yml

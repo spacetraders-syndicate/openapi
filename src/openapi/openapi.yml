@@ -33,6 +33,8 @@ paths:
     $ref: ./paths/gameSystems.yml
   /game/status:
     $ref: ./paths/gameStatus.yml
+  /game/systems/{symbol}/locations:
+    $ref: ./paths/gameSystemsLocations.yml
 
 components:
   securitySchemes:

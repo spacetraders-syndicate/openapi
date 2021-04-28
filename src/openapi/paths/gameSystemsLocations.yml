@@ -1,0 +1,21 @@
+
+get:
+  operationId: listSystemLocations
+  summary: List System Locations
+  parameters:
+    - in: query
+      name: type
+      schema:
+        type: string
+      description: Filter locations fetched on location type
+
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/ListGameSystemLocations.yml
+
+parameters:
+  - $ref: ../schemas/ParameterSymbol.yml

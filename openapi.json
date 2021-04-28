@@ -323,6 +323,39 @@
           }
         }
       }
+    },
+    "/game/systems/{symbol}/locations": {
+      "get": {
+        "operationId": "listSystemLocations",
+        "summary": "List System Locations",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter locations fetched on location type"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListGameSystemLocations"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ParameterSymbol"
+        }
+      ]
     }
   },
   "components": {
@@ -908,6 +941,20 @@
           "status": {
             "type": "string",
             "example": "spacetraders is currently online and available to play"
+          }
+        }
+      },
+      "ListGameSystemLocations": {
+        "type": "object",
+        "required": [
+          "locations"
+        ],
+        "properties": {
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Location"
+            }
           }
         }
       }
