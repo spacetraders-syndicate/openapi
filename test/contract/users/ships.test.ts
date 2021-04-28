@@ -1,4 +1,4 @@
-import { Configuration, PurchaseableShip, Ship, ShipsApi } from '../../../src/sdk';
+import { Configuration, PurchaseableShip, UserShip, ShipsApi } from '../../../src/sdk';
 import { newUserAndConfigAcceptedLoan, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
@@ -7,7 +7,7 @@ describe('user ships', () => {
     let config: Configuration;
     let user: User;
     let purchaseableShips: PurchaseableShip[];
-    let purchasedShip: Ship;
+    let purchasedShip: UserShip;
 
     beforeAll(async () => {
         const response = await newUserAndConfigAcceptedLoan();
