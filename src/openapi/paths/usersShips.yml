@@ -1,0 +1,18 @@
+post:
+  operationId: buyUserShip
+  summary: Buy User Ship
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../schemas/BuyUserShipPayload.yml
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/BuyUserShipResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterUsername.yml

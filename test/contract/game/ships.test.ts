@@ -23,14 +23,4 @@ describe('ships', () => {
     },
     TEST_TIMEOUT
   );
-
-  it(
-    'buys a ships',
-    async () => {
-        const { data: { ships }} = await api.listGamePurchasableShips();
-        expect(ships.length).toBeGreaterThan(0);
-        expect(ships[0].purchaseLocations.length).toBeGreaterThan(0);
-    },
-    TEST_TIMEOUT
-  );
 });

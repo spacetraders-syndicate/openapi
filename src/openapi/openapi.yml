@@ -15,6 +15,10 @@ paths:
     $ref: ./paths/usersToken.yml
   /users/{username}:
     $ref: ./paths/users.yml
+  /users/{username}/ships:
+    $ref: ./paths/usersShips.yml
+  /users/{username}/ships/{shipId}:
+    $ref: ./paths/usersShipsById.yml
   /users/{username}/loans:
     $ref: ./paths/usersLoans.yml
   /users/{username}/loans/{loanId}:

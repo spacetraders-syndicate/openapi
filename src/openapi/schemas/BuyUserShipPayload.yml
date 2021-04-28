@@ -1,0 +1,9 @@
+type: object
+required:
+  - type
+  - location
+properties:
+  type:
+    type: string
+  location:
+    type: string

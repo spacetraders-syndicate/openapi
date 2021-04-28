@@ -1,0 +1,25 @@
+get:
+  operationId: getUserShip
+  summary: Get User's Ship Info
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/GetUserShipResponse.yml
+
+delete:
+  operationId: scrapUserShip
+  summary: Scrap User's Ship
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/ScrapUserShipResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterUsername.yml
+  - $ref: ../schemas/ParameterShipId.yml

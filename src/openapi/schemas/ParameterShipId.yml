@@ -1,0 +1,7 @@
+name: shipId
+in: path
+example: ckno9324k0079iiop71j5nrob
+required: true
+schema:
+  type: string
+style: simple

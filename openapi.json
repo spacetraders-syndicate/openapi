@@ -65,6 +65,80 @@
         }
       ]
     },
+    "/users/{username}/ships": {
+      "post": {
+        "operationId": "buyUserShip",
+        "summary": "Buy User Ship",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuyUserShipPayload"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuyUserShipResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ParameterUsername"
+        }
+      ]
+    },
+    "/users/{username}/ships/{shipId}": {
+      "get": {
+        "operationId": "getUserShip",
+        "summary": "Get User's Ship Info",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserShipResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "scrapUserShip",
+        "summary": "Scrap User's Ship",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScrapUserShipResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/ParameterUsername"
+        },
+        {
+          "$ref": "#/components/parameters/ParameterShipId"
+        }
+      ]
+    },
     "/users/{username}/loans": {
       "post": {
         "operationId": "createUserLoan",
@@ -254,6 +328,16 @@
         },
         "style": "simple"
       },
+      "ParameterShipId": {
+        "name": "shipId",
+        "in": "path",
+        "example": "ckno9324k0079iiop71j5nrob",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "style": "simple"
+      },
       "ParameterLoanId": {
         "name": "loanId",
         "in": "path",
@@ -424,6 +508,59 @@
         "properties": {
           "user": {
             "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "BuyUserShipPayload": {
+        "type": "object",
+        "required": [
+          "type",
+          "location"
+        ],
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      },
+      "BuyUserShipResponse": {
+        "type": "object",
+        "required": [
+          "credits",
+          "ship"
+        ],
+        "properties": {
+          "credits": {
+            "type": "number",
+            "example": 178875
+          },
+          "ship": {
+            "$ref": "#/components/schemas/Ship"
+          }
+        }
+      },
+      "GetUserShipResponse": {
+        "type": "object",
+        "required": [
+          "ship"
+        ],
+        "properties": {
+          "ship": {
+            "$ref": "#/components/schemas/Ship"
+          }
+        }
+      },
+      "ScrapUserShipResponse": {
+        "type": "object",
+        "required": [
+          "ship"
+        ],
+        "properties": {
+          "ship": {
+            "$ref": "#/components/schemas/Ship"
           }
         }
       },
