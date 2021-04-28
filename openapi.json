@@ -91,6 +91,22 @@
           }
         }
       },
+      "get": {
+        "operationId": "listUserShips",
+        "summary": "List User's Ships",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListUserShipsResponse"
+                }
+              }
+            }
+          }
+        }
+      },
       "parameters": [
         {
           "$ref": "#/components/parameters/ParameterUsername"
@@ -511,6 +527,20 @@
           }
         }
       },
+      "ListUserShipsResponse": {
+        "type": "object",
+        "required": [
+          "ships"
+        ],
+        "properties": {
+          "ships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Ship"
+            }
+          }
+        }
+      },
       "BuyUserShipPayload": {
         "type": "object",
         "required": [
@@ -555,12 +585,9 @@
       },
       "ScrapUserShipResponse": {
         "type": "object",
-        "required": [
-          "ship"
-        ],
         "properties": {
-          "ship": {
-            "$ref": "#/components/schemas/Ship"
+          "success": {
+            "type": "string"
           }
         }
       },

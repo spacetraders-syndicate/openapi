@@ -1,6 +1,4 @@
 type: object
-required:
-  - ship
 properties:
-  ship:
-    $ref: ./Ship.yml
+  success:
+    type: string

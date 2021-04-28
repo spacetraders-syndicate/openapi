@@ -1,0 +1,8 @@
+type: object
+required:
+  - ships
+properties:
+  ships:
+    type: array
+    items:
+      $ref: ./Ship.yml
