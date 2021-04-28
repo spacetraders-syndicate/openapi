@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: 10
       - run: npm ci
-      - run: npm build
+      - run: npm run build
       - uses: JS-DevTools/npm-publish@v1
         with:
           package: ./src/sdk/package.json
