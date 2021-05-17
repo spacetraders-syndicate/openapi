@@ -26,4 +26,10 @@ properties:
   weapons:
     type: number
     example: 5
-
+  speed:
+    type: number
+    example: 3
+  restrictedGoods:
+    type: array
+    items:
+      type: string
