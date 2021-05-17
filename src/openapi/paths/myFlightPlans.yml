@@ -15,6 +15,3 @@ post:
         application/json:
           schema:
             $ref: ../schemas/CreateUserFlightPlanResponse.yml
-
-parameters:
-  - $ref: ../schemas/ParameterUsername.yml

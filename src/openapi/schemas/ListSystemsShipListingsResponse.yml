@@ -1,9 +1,8 @@
 type: object
 required:
-  - location
+  - ships
 properties:
-  ships:
+  shipListings:
     type: array
     items:
-      $ref: ./LocationShip.yml
-
+      $ref: ./PurchaseableShip.yml

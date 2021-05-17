@@ -8,11 +8,9 @@ properties:
   credits:
     type: number
     example: 421337
-  ships:
-    type: array
-    items:
-      $ref: ./UserShip.yml
-  loans:
-    type: array
-    items:
-      $ref: ./Loan.yml
+  shipCount:
+    type: number
+    example: 10
+  structureCount:
+    type: number
+    example: 1

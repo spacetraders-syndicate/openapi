@@ -22,8 +22,8 @@ describe('ship operations', () => {
 
         shipA = await buyCheapestShip(user.user, config, systems[0].symbol);
         shipB = await buyCheapestShip(user.user, config, systems[0].symbol);
+        console.log(shipA, shipB)
         const purchasedFuel = await new PurchaseOrdersApi(config).createUserPurchaseOrder({
-            username: user.user.username,
             createUserPurchaseOrderPayload: {
                 shipId: shipA.id,
                 good: 'FUEL',
@@ -40,7 +40,6 @@ describe('ship operations', () => {
         'jettisons cargo and ship cargo lookup',
         async () => {
             const jettison = await new ShipsApi(config).jettisonShipCargo({
-                username: user.user.username,
                 shipId: shipA.id,
                 jettisonShipCargoPayload: {
                     good: 'FUEL',
@@ -51,7 +50,6 @@ describe('ship operations', () => {
             const {
                 data: { ship },
             } = await new ShipsApi(config).getUserShip({
-                username: user.user.username,
                 shipId: shipA.id,
             });
 
@@ -73,7 +71,6 @@ describe('ship operations', () => {
         'transfers cargo',
         async () => {
             const transfer = await new ShipsApi(config).transferShipCargo({
-                username: user.user.username,
                 fromShipId: shipA.id,
                 transferShipCargoPayload: {
                     toShipId: shipB.id,

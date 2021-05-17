@@ -1,21 +1,20 @@
 post:
-  operationId: depositStructureIenventory
-  summary: Deposit Structure Inventory
+  operationId: transferStructureIenventory
+  summary: Transfer Structure Inventory
   tags:
     - structures
   requestBody:
     content:
       application/json:
         schema:
-          $ref: ../schemas/DepositStructureInventoryPayload.yml
+          $ref: ../schemas/TransferStructureInventoryPayload.yml
   responses:
     200:
       description: Success
       content:
         application/json:
           schema:
-            $ref: ../schemas/DepositStructureInventoryResponse.yml
+            $ref: ../schemas/TransferStructureInventoryResponse.yml
 
 parameters:
-  - $ref: ../schemas/ParameterUsername.yml
   - $ref: ../schemas/ParameterStructureId.yml

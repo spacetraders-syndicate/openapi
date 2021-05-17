@@ -1,6 +1,6 @@
 get:
-  operationId: getUser
-  summary: Get User
+  operationId: getAccount
+  summary: Get My Account
   tags:
     - users
   responses:
@@ -10,6 +10,3 @@ get:
         application/json:
           schema:
             $ref: ../schemas/GetUserResponse.yml
-
-parameters:
-  - $ref: ../schemas/ParameterUsername.yml

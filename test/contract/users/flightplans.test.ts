@@ -33,7 +33,6 @@ describe('user flight plans', () => {
             }) as Location;
 
             const purchasedFuel = await new PurchaseOrdersApi(config).createUserPurchaseOrder({
-                username: user.user.username,
                 createUserPurchaseOrderPayload: {
                     shipId: ship.id,
                     good: 'FUEL',
@@ -42,7 +41,6 @@ describe('user flight plans', () => {
             });
 
             const flightPlan = await new FlightPlansApi(config).createUserFlightPlan({
-                username: user.user.username,
                 createUserFlightPlanPayload: {
                     shipId: ship.id,
                     destination: destination.symbol,

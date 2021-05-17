@@ -24,9 +24,7 @@ describe('user structures', () => {
         async () => {
             const {
                 data: { structures },
-            } = await new StructuresApi(config).listUserStructures({
-                username: user.user.username,
-            });
+            } = await new StructuresApi(config).listUserStructures();
 
             expect(structures.length).toBeGreaterThanOrEqual(0);
         },

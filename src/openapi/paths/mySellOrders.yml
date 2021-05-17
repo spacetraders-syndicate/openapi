@@ -16,5 +16,3 @@ post:
           schema:
             $ref: ../schemas/CreateUserSellOrderResponse.yml
 
-parameters:
-  - $ref: ../schemas/ParameterUsername.yml

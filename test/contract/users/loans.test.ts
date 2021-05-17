@@ -22,9 +22,7 @@ describe('user info', () => {
         async () => {
             const {
                 data: { loans },
-            } = await new LoansApi(config).listUserLoans({
-                username: user.user.username,
-            });
+            } = await new LoansApi(config).listUserLoans();
             expect(loans.length).toBe(1);
             expect(loans[0].status).toBe('CURRENT');
         },

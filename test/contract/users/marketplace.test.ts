@@ -29,7 +29,6 @@ describe('user marketplace', () => {
         'sell at marketplace',
         async () => {
             const purchasedFuel = await new PurchaseOrdersApi(config).createUserPurchaseOrder({
-                username: user.user.username,
                 createUserPurchaseOrderPayload: {
                     shipId: ship.id,
                     good: 'FUEL',
@@ -38,7 +37,6 @@ describe('user marketplace', () => {
             });
 
             const sellFuelOrder = await new SellOrdersApi(config).createUserSellOrder({
-                username: user.user.username,
                 createUserSellOrderPayload: {
                     shipId: ship.id,
                     good: 'FUEL',

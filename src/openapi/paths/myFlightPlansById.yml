@@ -12,5 +12,4 @@ get:
             $ref: ../schemas/GetUserFlightPlanResponse.yml
 
 parameters:
-  - $ref: ../schemas/ParameterUsername.yml
   - $ref: ../schemas/ParameterFlightPlanId.yml

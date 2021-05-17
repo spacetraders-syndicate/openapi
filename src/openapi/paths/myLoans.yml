@@ -28,6 +28,3 @@ get:
         application/json:
           schema:
             $ref: ../schemas/ListUserLoansResponse.yml
-
-parameters:
-  - $ref: ../schemas/ParameterUsername.yml

@@ -1,5 +1,5 @@
 post:
-  operationId: createUserToken
+  operationId: createUsersClaim
   summary: Claim Username and Get Token
   tags:
     - users

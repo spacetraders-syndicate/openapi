@@ -87,13 +87,13 @@ describe('system locations', () => {
         'fetches location ships',
         async () => {
             const ship = await buyCheapestShip(user.user, config);
-            sleep();
+            await sleep();
             const {
-                data: { location },
+                data: { ships },
             } = await new LocationsApi(config).listGameLocationsShips({
                 symbol: ship.location,
             });
-            expect(location.ships).toEqual(
+            expect(ships).toEqual(
                 expect.arrayContaining([
                     expect.objectContaining({
                         shipId: ship.id,

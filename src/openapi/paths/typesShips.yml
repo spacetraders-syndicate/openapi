@@ -1,0 +1,13 @@
+get:
+  operationId: listShipTypes
+  summary: List Game Ship Types
+  tags:
+    - types
+    - ships
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/ListTypesShipsResponse.yml

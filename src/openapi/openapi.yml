@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: SpaceTraders OpenAPI
   description: A SpaceTraders.io API OpenAPI Spec from SpaceTraders Syndicate
-  version: 1.0.1
+  version: 2.0.0
   contact:
     email: spacetraders.syndicate@gmail.com
 servers:
@@ -11,58 +11,64 @@ servers:
   - url: https://staging.api.spacetraders.io
     description: Staging
 paths:
-  /users/{username}/token:
-    $ref: ./paths/usersToken.yml
-  /users/{username}:
-    $ref: ./paths/usersById.yml
-  /users/{username}/ships:
-    $ref: ./paths/usersShips.yml
-  /users/{username}/sell-orders:
-    $ref: ./paths/usersSellOrders.yml
-  /users/{username}/ships/{shipId}:
-    $ref: ./paths/usersShipsById.yml
-  /users/{username}/ships/{shipId}/jettison:
-    $ref: ./paths/usersShipsByIdJettison.yml
-  /users/{username}/ships/{fromShipId}/transfer:
-    $ref: ./paths/usersShipsByIdTransfer.yml
-  /users/{username}/loans:
-    $ref: ./paths/usersLoans.yml
-  /users/{username}/structures:
-    $ref: ./paths/usersStructures.yml
-  /users/{username}/structures/{structureId}:
-    $ref: ./paths/usersStructuresById.yml
-  /users/{username}/structures/{structureId}/deposit:
-    $ref: ./paths/usersStructuresByIdDeposit.yml
-  /users/{username}/structures/{structureId}/transfer:
-    $ref: ./paths/usersStructuresByIdTransfer.yml
-  /users/{username}/loans/{loanId}:
-    $ref: ./paths/usersLoansById.yml
-  /users/{username}/purchase-orders:
-    $ref: ./paths/usersPurchaseOrders.yml
-  /users/{username}/flight-plans:
-    $ref: ./paths/usersFlightPlans.yml
-  /users/{username}/flight-plans/{flightPlanId}:
-    $ref: ./paths/usersFlightPlansById.yml
-  /game/locations/{symbol}:
-    $ref: ./paths/gameLocations.yml
-  /game/locations/{symbol}/ships:
-    $ref: ./paths/gameLocationsShips.yml
-  /game/systems/{symbol}/flight-plans:
-    $ref: ./paths/gameSystemsFlightPlans.yml
-  /game/locations/{symbol}/marketplace:
-    $ref: ./paths/gameLocationsMarketplace.yml
-  /game/structures:
-    $ref: ./paths/gameStructures.yml
-  /game/loans:
-    $ref: ./paths/gameLoans.yml
-  /game/ships:
-    $ref: ./paths/gameShips.yml
-  /game/systems:
-    $ref: ./paths/gameSystems.yml
+  /users/{username}/claim:
+    $ref: ./paths/usersClaim.yml
+  /my/account:
+    $ref: ./paths/myAccount.yml
+  /my/ships:
+    $ref: ./paths/myShips.yml
+  /my/sell-orders:
+    $ref: ./paths/mySellOrders.yml
+  /my/ships/{shipId}:
+    $ref: ./paths/myShipsById.yml
+  /my/ships/{shipId}/jettison:
+    $ref: ./paths/myShipsByIdJettison.yml
+  /my/ships/{fromShipId}/transfer:
+    $ref: ./paths/myShipsByIdTransfer.yml
+  /my/loans:
+    $ref: ./paths/myLoans.yml
+  /my/structures:
+    $ref: ./paths/myStructures.yml
+  /my/structures/{structureId}:
+    $ref: ./paths/myStructuresById.yml
+  /my/structures/{structureId}/deposit:
+    $ref: ./paths/myStructuresByIdDeposit.yml
+  /my/structures/{structureId}/transfer:
+    $ref: ./paths/myStructuresByIdTransfer.yml
+  /my/loans/{loanId}:
+    $ref: ./paths/myLoansById.yml
+  /my/purchase-orders:
+    $ref: ./paths/myPurchaseOrders.yml
+  /my/flight-plans:
+    $ref: ./paths/myFlightPlans.yml
+  /my/flight-plans/{flightPlanId}:
+    $ref: ./paths/myFlightPlansById.yml
+  /locations/{symbol}:
+    $ref: ./paths/locations.yml
+  /locations/{symbol}/ships:
+    $ref: ./paths/locationsShips.yml
+  /locations/{symbol}/marketplace:
+    $ref: ./paths/locationsMarketplace.yml
+  /types/structures:
+    $ref: ./paths/typesStructures.yml
+  /structures:
+    $ref: ./paths/structures.yml
+  /types/loans:
+    $ref: ./paths/typesLoans.yml
+  /types/ships:
+    $ref: ./paths/typesShips.yml
   /game/status:
     $ref: ./paths/gameStatus.yml
-  /game/systems/{symbol}/locations:
-    $ref: ./paths/gameSystemsLocations.yml
+  /game/systems:
+    $ref: ./paths/systems.yml
+  /systems/{symbol}/locations:
+    $ref: ./paths/systemsLocations.yml
+  /systems/{symbol}/flight-plans:
+    $ref: ./paths/systemsFlightPlans.yml
+  /systems/{symbol}/ships:
+    $ref: ./paths/systemsShips.yml
+  /systems/{symbol}/ship-listings:
+    $ref: ./paths/systemsShipListings.yml
 
 components:
   securitySchemes:
@@ -84,4 +90,4 @@ tags:
   - name: ships
   - name: structures
   - name: systems
-  - name: users
+  - name: my

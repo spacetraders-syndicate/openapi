@@ -12,5 +12,4 @@ get:
             $ref: ../schemas/GetUserStructureResponse.yml
 
 parameters:
-  - $ref: ../schemas/ParameterUsername.yml
   - $ref: ../schemas/ParameterStructureId.yml

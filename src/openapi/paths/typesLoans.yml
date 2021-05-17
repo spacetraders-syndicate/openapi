@@ -2,7 +2,7 @@ get:
   operationId: listGameLoans
   summary: List Game Loans
   tags:
-    - loans
+    - types
   responses:
     200:
       description: Success

@@ -25,5 +25,4 @@ delete:
             $ref: ../schemas/ScrapUserShipResponse.yml
 
 parameters:
-  - $ref: ../schemas/ParameterUsername.yml
   - $ref: ../schemas/ParameterShipId.yml

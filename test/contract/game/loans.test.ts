@@ -1,4 +1,4 @@
-import { Configuration, LoansApi } from '../../../src/sdk';
+import { Configuration, TypesApi } from '../../../src/sdk';
 import { newUserAndConfiguration, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
@@ -22,7 +22,7 @@ describe('loans', () => {
         async () => {
             const {
                 data: { loans },
-            } = await new LoansApi(config).listGameLoans();
+            } = await new TypesApi(config).listGameLoans();
             expect(loans.length).toBeGreaterThanOrEqual(0);
             expect(loans[0].amount).toBeGreaterThan(0);
         },

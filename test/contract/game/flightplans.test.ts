@@ -30,7 +30,7 @@ describe('flight plans', () => {
         async () => {
             const {
                 data: { flightPlans },
-            } = await new FlightPlansApi(config).listGameSystemFlightPlans({
+            } = await new FlightPlansApi(config).listSystemFlightPlans({
                 symbol: systems[0].symbol,
             });
             expect(flightPlans.length).toBeGreaterThanOrEqual(0);

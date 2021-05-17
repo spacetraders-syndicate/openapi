@@ -1,4 +1,4 @@
-import { UsersApi, LoansApi, CreateUserTokenResponse, Configuration } from '../../src/sdk';
+import { UsersApi, LoansApi, CreateUserTokenResponse, Configuration, TypesApi } from '../../src/sdk';
 import faker from 'faker';
 
 export type User = CreateUserTokenResponse;
@@ -11,7 +11,7 @@ export async function newUser(): Promise<User> {
     });
 
     const usersClient = new UsersApi(configuration);
-    const user = await usersClient.createUserToken({
+    const user = await usersClient.createUsersClaim({
         username: faker.datatype.uuid(),
     });
     return user.data;
@@ -49,11 +49,11 @@ export async function newUserAndConfigAcceptedLoan(
         response = await newUserAndConfiguration(user);
     }
     const loansClient = new LoansApi(response.config);
+    const typesClient = new TypesApi(response.config);
     const {
         data: { loans },
-    } = await loansClient.listGameLoans();
+    } = await typesClient.listGameLoans();
     await loansClient.createUserLoan({
-        username: response.user.user.username,
         createUserLoanPayload: {
             type: loans[0].type,
         },

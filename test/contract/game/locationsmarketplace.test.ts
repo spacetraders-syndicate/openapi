@@ -29,12 +29,12 @@ describe('system locations', () => {
         'gets marketplace',
         async () => {
             const {
-                data: { location },
+                data: { marketplace },
             } = await new MarketplaceApi(config).getGameLocationMarketplace({
                 symbol: ship.location,
             });
-            expect(location.marketplace.length).toBeGreaterThan(0);
-            expect(location.marketplace[0].pricePerUnit).toBeGreaterThan(0);
+            expect(marketplace!.length).toBeGreaterThan(0);
+            expect(marketplace![0].pricePerUnit).toBeGreaterThan(0);
         },
         TEST_TIMEOUT,
     );

@@ -2,6 +2,7 @@ get:
   operationId: listGameStructures
   summary: List Game Structures
   tags:
+    - types
     - structures
   responses:
     200:

@@ -1,0 +1,29 @@
+type: object
+required:
+  - class
+  - purchaseLocations
+  - manufacturer
+  - maxCargo
+  - plating
+  - speed
+  - type
+  - weapons
+properties:
+  class:
+    type: string
+  manufacturer:
+    type: string
+    example: Jackshaw
+  maxCargo:
+    type: number
+    example: 50
+  plating:
+    type: number
+    example: 5
+  type:
+    type: string
+    example: JW-MK-I
+  weapons:
+    type: number
+    example: 5
+

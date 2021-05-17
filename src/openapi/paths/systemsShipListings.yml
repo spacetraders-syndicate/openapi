@@ -1,0 +1,16 @@
+get:
+  operationId: listSystemShipListings
+  summary: List System Ship Listings
+  tags:
+    - ships
+    - systems
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/ListSystemsShipListingsResponse.yml
+
+parameters:
+  - $ref: ../schemas/ParameterSymbol.yml

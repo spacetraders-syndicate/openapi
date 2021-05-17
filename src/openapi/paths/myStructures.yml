@@ -28,6 +28,3 @@ get:
         application/json:
           schema:
             $ref: ../schemas/ListUserStructuresResponse.yml
-
-parameters:
-  - $ref: ../schemas/ParameterUsername.yml

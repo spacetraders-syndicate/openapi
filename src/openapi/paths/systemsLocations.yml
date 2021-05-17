@@ -3,6 +3,7 @@ get:
   summary: List System Locations
   tags:
     - locations
+    - systems
   parameters:
     - in: query
       name: type

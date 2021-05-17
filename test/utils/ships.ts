@@ -1,4 +1,4 @@
-import { Configuration, UserShip, User, System, ShipsApi } from '../../src/sdk';
+import { Configuration, UserShip, User, System, ShipsApi, SystemsApi } from '../../src/sdk';
 import { sleep } from './sleep';
 
 export async function buyCheapestShip(
@@ -7,26 +7,19 @@ export async function buyCheapestShip(
     systemSymbol?: System['symbol'],
 ): Promise<UserShip> {
     await sleep(1);
-    const shipsClient = await new ShipsApi(config);
-    let {
-        data: { ships },
-    } = await shipsClient.listGamePurchasableShips();
-
-    // filter to only ship purchase options from a particular system
-    if (systemSymbol) {
-        ships = ships
-            .map((ship) => {
-                ship.purchaseLocations = ship.purchaseLocations.filter((location) => {
-                    return location.system == systemSymbol;
-                });
-                return ship;
-            })
-            .filter((ship) => {
-                return ship.purchaseLocations.length > 0;
-            });
+    const shipsClient = new ShipsApi(config);
+    const systemsClient = new SystemsApi(config);
+    const { data: { systems }} = await systemsClient.listGameSystems();
+    if(!systemSymbol){
+        systemSymbol = systems[0].symbol
     }
 
-    const cheapestShip = ships.reduce((prev, curr) => {
+    let {
+        data: { shipListings },
+    } = await shipsClient.listSystemShipListings({
+        symbol: systemSymbol
+    });
+    const cheapestShip = shipListings!.reduce((prev, curr) => {
         const previousShipLowestPriceLocation = prev.purchaseLocations.reduce((prev, curr) => {
             return prev.price < curr.price ? prev : curr;
         }).price;
@@ -41,7 +34,6 @@ export async function buyCheapestShip(
     const {
         data: { ship },
     } = await shipsClient.buyUserShip({
-        username: user.username,
         buyUserShipPayload: {
             type: cheapestShip.type,
             location: cheapestShip.purchaseLocations.reduce((prev, curr) => {

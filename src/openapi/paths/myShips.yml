@@ -29,5 +29,3 @@ get:
           schema:
             $ref: ../schemas/ListUserShipsResponse.yml
 
-parameters:
-  - $ref: ../schemas/ParameterUsername.yml

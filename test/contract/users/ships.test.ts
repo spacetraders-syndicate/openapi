@@ -1,5 +1,5 @@
-import { Configuration, PurchaseableShip, UserShip, ShipsApi } from '../../../src/sdk';
-import { newUserAndConfigAcceptedLoan, sleep, User } from '../../utils';
+import { Configuration, PurchaseableShip, UserShip, ShipsApi, SystemsApi } from '../../../src/sdk';
+import { buyCheapestShip, newUserAndConfigAcceptedLoan, sleep, User } from '../../utils';
 
 const TEST_TIMEOUT = 10000;
 
@@ -13,10 +13,13 @@ describe('user ships', () => {
         const response = await newUserAndConfigAcceptedLoan();
         config = response.config;
         user = response.user;
+        const { data: { systems }} = await new SystemsApi(config).listGameSystems();
         const {
-            data: { ships },
-        } = await new ShipsApi(config).listGamePurchasableShips();
-        purchaseableShips = ships;
+            data: { shipListings },
+        } = await new SystemsApi(config).listSystemShipListings({
+            symbol: systems[0].symbol
+        });
+        purchaseableShips = shipListings!;
     });
 
     beforeEach(async () => {
@@ -26,32 +29,9 @@ describe('user ships', () => {
     it(
         'buys ship',
         async () => {
-            const cheapestShip = purchaseableShips.reduce((prev, curr) => {
-                return prev.purchaseLocations.reduce((prev, curr) => {
-                    return prev.price < curr.price ? prev : curr;
-                }) <
-                    curr.purchaseLocations.reduce((prev, curr) => {
-                        return prev.price < curr.price ? prev : curr;
-                    })
-                    ? prev
-                    : curr;
-            });
-
-            const {
-                data: { ship },
-            } = await new ShipsApi(config).buyUserShip({
-                username: user.user.username,
-                buyUserShipPayload: {
-                    type: cheapestShip.type,
-                    location: cheapestShip.purchaseLocations.reduce((prev, curr) => {
-                        return prev.price < curr.price ? prev : curr;
-                    }).location,
-                },
-            });
-
-            purchasedShip = ship;
-            expect(ship.id).toBeDefined();
-            expect(ship.manufacturer).toBeDefined();
+            purchasedShip = await buyCheapestShip(user.user, config)
+            expect(purchasedShip.id).toBeDefined();
+            expect(purchasedShip.manufacturer).toBeDefined();
         },
         TEST_TIMEOUT,
     );
@@ -59,9 +39,7 @@ describe('user ships', () => {
     it(
         'list user ships',
         async () => {
-            const userShips = await new ShipsApi(config).listUserShips({
-                username: user.user.username,
-            });
+            const userShips = await new ShipsApi(config).listUserShips();
 
             expect(userShips.data.ships.length).toBe(1);
             expect(userShips.data.ships[0].id).toBe(purchasedShip.id);
@@ -73,8 +51,7 @@ describe('user ships', () => {
         'gets ship info',
         async () => {
             const shipInfo = await new ShipsApi(config).getUserShip({
-                username: user.user.username,
-                shipId: purchasedShip.id,
+               shipId: purchasedShip.id,
             });
 
             expect(shipInfo.data.ship.id).toBe(purchasedShip.id);
@@ -87,7 +64,6 @@ describe('user ships', () => {
         'scraps ship',
         async () => {
             const scrapedShip = await new ShipsApi(config).scrapUserShip({
-                username: user.user.username,
                 shipId: purchasedShip.id,
             });
 

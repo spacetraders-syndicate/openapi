@@ -1,4 +1,4 @@
-put:
+post:
   operationId: transferShipCargo
   summary: Transfer Ship Cargo
   tags:
@@ -17,5 +17,4 @@ put:
             $ref: ../schemas/TransferShipCargoResponse.yml
 
 parameters:
-  - $ref: ../schemas/ParameterUsername.yml
   - $ref: ../schemas/ParameterFromShipId.yml
