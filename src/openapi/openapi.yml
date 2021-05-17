@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: SpaceTraders OpenAPI
   description: A SpaceTraders.io API OpenAPI Spec from SpaceTraders Syndicate
-  version: 2.0.0
+  version: 2.0.1
   contact:
     email: spacetraders.syndicate@gmail.com
 servers:
