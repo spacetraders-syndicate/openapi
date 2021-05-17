@@ -20,7 +20,7 @@ properties:
     type: array
     items:
       type: string
-  symbol:
+  type:
     type: string
     example: FARM
   price:

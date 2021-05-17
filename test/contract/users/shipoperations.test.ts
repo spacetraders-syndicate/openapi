@@ -22,7 +22,6 @@ describe('ship operations', () => {
 
         shipA = await buyCheapestShip(user.user, config, systems[0].symbol);
         shipB = await buyCheapestShip(user.user, config, systems[0].symbol);
-        console.log(shipA, shipB)
         const purchasedFuel = await new PurchaseOrdersApi(config).createUserPurchaseOrder({
             createUserPurchaseOrderPayload: {
                 shipId: shipA.id,
