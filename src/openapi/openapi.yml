@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: SpaceTraders OpenAPI
   description: A SpaceTraders.io API OpenAPI Spec from SpaceTraders Syndicate
-  version: 2.0.2
+  version: 2.1.2
   contact:
     email: spacetraders.syndicate@gmail.com
 servers:
@@ -57,6 +57,8 @@ paths:
     $ref: ./paths/typesLoans.yml
   /types/ships:
     $ref: ./paths/typesShips.yml
+  /types/goods:
+    $ref: ./paths/typesGoods.yml
   /game/status:
     $ref: ./paths/gameStatus.yml
   /game/systems:

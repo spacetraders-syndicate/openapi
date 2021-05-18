@@ -2,7 +2,7 @@ type: object
 required:
   - types
 properties:
-  ships:
+  goods:
     type: array
     items:
-      $ref: ./ShipType.yml
+      $ref: ./GoodType.yml

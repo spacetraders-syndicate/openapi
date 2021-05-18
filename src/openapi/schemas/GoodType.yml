@@ -1,0 +1,15 @@
+type: object
+required:
+  - name
+  - symbol
+  - volume
+properties:
+  name:
+    type: string
+    example: Fuel
+  symbol:
+    type: string
+    example: FUEL
+  volumePerUnit:
+    type: number
+    example: 1

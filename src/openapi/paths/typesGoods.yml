@@ -1,0 +1,12 @@
+get:
+  operationId: listGoodTypes
+  summary: List Good Types
+  tags:
+    - types
+  responses:
+    200:
+      description: Success
+      content:
+        application/json:
+          schema:
+            $ref: ../schemas/ListTypesGoodsResponse.yml
