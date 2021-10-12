@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "@openapitools/openapi-generator-cli": "^2.2.6",
-        "@redocly/openapi-cli": "^1.0.0-beta.44",
+        "@redocly/openapi-cli": "^1.0.0-beta.59",
         "@types/faker": "^5.5.3",
         "@types/jest": "^26.0.23",
         "@typescript-eslint/eslint-plugin": "^4.22.0",
